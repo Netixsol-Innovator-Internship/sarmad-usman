@@ -39,11 +39,6 @@ Click here to view the project live:
 
 **M. Sarmad Usman**  
 Intern @ Netixsol  
-[GitHub Profile](https://github.com/sarmadusman)
 
 ---
-
-## 📌 Note
-
-This is part of a daily learning and deployment challenge for the internship. Future versions may include CSS styling and interactivity using JavaScript.
 

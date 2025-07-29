@@ -8,14 +8,6 @@ This is a beginner-level front-end project created as part of the Week 1 - Day 1
 
 ---
 
-## 🛠️ Technologies Used
-
-- HTML5
-
-> ❌ No CSS or JavaScript is used — this is a pure HTML project.
-
----
-
 ## 📁 Features
 
 - Personal portfolio-style webpage layout
@@ -23,7 +15,7 @@ This is a beginner-level front-end project created as part of the Week 1 - Day 1
   - Header with name
   - Personal introduction
   - Education or skills
-  - Contact information (optional)
+  - Contact information 
 - Deployed live using [Vercel](https://vercel.com)
 
 ---

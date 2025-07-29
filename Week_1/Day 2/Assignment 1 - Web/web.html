@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- Responsive design for different screen sizes -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonial Grid</title>
+
+  <!-- Tailwind CSS CDN for utility-first styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Set default font for the entire body */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Styling for the quotation icon in testimonials */
+    .quote-icon {
+      opacity: 0.1; /* Low opacity for subtle background effect */
+      transition: transform 0.3s ease; /* Smooth transform transition on hover */
+    }
+
+    /* On hover of testimonial card, slightly scale up the quote icon */
+    .card:hover .quote-icon {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 p-6 md:p-10">
+  <!-- Container with max width and responsive padding -->
+
+  <div class="max-w-7xl mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-min">
+    <!--
+      Main grid container:
+      - max width 7xl and centered horizontally
+      - grid layout with gap between items
+      - 1 column on small screens
+      - 2 columns on medium screens (md)
+      - 4 columns on large screens (lg)
+      - rows have minimum height based on content
+    -->
+
+    <!-- Testimonial 1 -->
+    <div
+      class="relative card cursor-pointer transition-transform duration-150 active:scale-[0.98] text-white p-8 rounded-2xl shadow-xl col-span-1 md:col-span-2 bg-gradient-to-br from-purple-600 to-indigo-600 overflow-hidden">
+      <!--
+        - 'card' class for hover effect on quote icon
+        - pointer cursor indicates interactivity
+        - smooth scale transform on active (click) state
+        - white text on gradient background
+        - padding and rounded corners with shadow
+        - spans 1 column on small, 2 columns on medium screens
+        - overflow hidden to clip quote icon animation
+      -->
+
+      <!-- Quote icon background image -->
+      <img src="bg-pattern-quotation.svg" alt="quote"
+        class="quote-icon absolute top-6 right-6 w-20 opacity-10 pointer-events-none select-none" />
+      <!--
+        Positioned absolutely at top-right inside card,
+        low opacity,
+        pointer-events-none & select-none so it doesn’t interfere with mouse/touch or selection
+      -->
+
+      <div class="relative z-10 mb-5">
+        <!-- Content relative to ensure above quote icon -->
+        <div class="flex items-center space-x-4">
+          <!-- User avatar and name container -->
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Daniel Clifford"
+            class="w-12 h-12 rounded-full border-2 border-white shadow-md">
+          <!-- Circular avatar with white border and shadow -->
+          <div>
+            <h4 class="font-semibold">Daniel Clifford</h4>
+            <p class="text-sm opacity-80">Verified Graduate</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial headline -->
+      <h3 class="text-xl font-semibold mb-3 relative z-10 leading-snug">
+        I received a job offer mid-course. I honestly feel I got every penny's worth.
+      </h3>
+
+      <!-- Testimonial detailed text -->
+      <p class="text-sm opacity-90 relative z-10 leading-relaxed">
+        " I was an EMT for many years before I joined the bootcamp. I’ve been looking to make a transition and heard
+        amazing things. I enrolled shortly after the intro course. The next 12 weeks were the most intense and rewarding
+        of my life. I'm now a Software Engineer at a VR startup. "
+      </p>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div
+      class="bg-gray-800 text-white cursor-pointer transition-transform duration-150 active:scale-[0.98] p-8 rounded-2xl shadow-xl hover:scale-[1.02] transition transform duration-200">
+      <!--
+        Dark background testimonial card with white text
+        Slight scale up on hover, scale down on active press
+        Rounded corners and shadow for card effect
+      -->
+      <div class="mb-5">
+        <div class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Jonathan Walters"
+            class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+          <div>
+            <h4 class="font-semibold">Jonathan Walters</h4>
+            <p class="text-sm opacity-80">Verified Graduate</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-2 leading-snug">The team was very supportive and kept me motivated</h3>
+      <p class="text-sm opacity-90 leading-relaxed">" I started as a total newbie with no coding experience. I now
+        work as a mobile engineer at a major company. "</p>
+    </div>
+
+    <!-- Testimonial 3 -->
+    <div
+      class="bg-white text-gray-900 cursor-pointer transition-transform duration-150 active:scale-[0.98] p-8 rounded-2xl shadow-xl col-span-1 row-span-2 border border-gray-200 hover:shadow-2xl transition duration-200">
+      <!--
+        White background card with dark text
+        Spans 1 column and 2 rows, making it taller
+        Border and shadow with hover shadow effect
+      -->
+      <div class="mb-5">
+        <div class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Kira Whittle"
+            class="w-12 h-12 rounded-full shadow-md">
+          <div>
+            <h4 class="font-semibold">Kira Whittle</h4>
+            <p class="text-sm text-gray-500">Verified Graduate</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Such a life-changing experience. Highly recommended!</h3>
+      <p class="text-sm text-gray-700 leading-relaxed">" Before joining, I had never written a line of code. The
+        bootcamp helped me build a strong foundation step-by-step. Now I feel confident tackling real-world projects
+        and challenges. "</p>
+    </div>
+
+    <!-- Testimonial 4 -->
+    <div
+      class="bg-white text-gray-900 cursor-pointer transition-transform duration-150 active:scale-[0.98] p-8 rounded-2xl shadow-xl border border-gray-200 hover:shadow-2xl transition duration-200">
+      <!--
+        White card similar to testimonial 3 but default grid row span (1)
+        Border and shadow with hover effect
+      -->
+      <div class="mb-5">
+        <div class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jeanette Harmon"
+            class="w-12 h-12 rounded-full shadow-md">
+          <div>
+            <h4 class="font-semibold">Jeanette Harmon</h4>
+            <p class="text-sm text-gray-500">Verified Graduate</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">An overall wonderful and rewarding experience</h3>
+      <p class="text-sm text-gray-700 leading-relaxed">" Thank you for the incredible experience! I now have a job I
+        love and feel proud of what I’ve achieved. "</p>
+    </div>
+
+    <!-- Testimonial 5 -->
+    <div
+      class="bg-gray-900 text-white cursor-pointer transition-transform duration-150 active:scale-[0.98] p-8 rounded-2xl shadow-xl col-span-1 md:col-span-2">
+      <!--
+        Dark background card spanning 2 columns on medium screens
+        White text, rounded corners, shadow and press scale effect
+      -->
+      <div class="mb-5">
+        <div class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="Patrick Abrams"
+            class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+          <div>
+            <h4 class="font-semibold">Patrick Abrams</h4>
+            <p class="text-sm opacity-80">Verified Graduate</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-3 leading-snug">
+        Awesome teaching support from former students. Learning from their experience made a huge difference.
+      </h3>
+      <p class="text-sm opacity-90 leading-relaxed">" The staff were genuinely invested in my success. The support and
+        feedback I received gave me the confidence to keep pushing through. "</p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

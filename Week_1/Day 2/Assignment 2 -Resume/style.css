@@ -1,0 +1,260 @@
+/* General styles for body and container */
+body {
+  font-family: Arial, sans-serif; /* Clean, sans-serif font */
+  font-size: 14px; /* Base font size */
+  margin: 0; /* Remove default margin */
+  background: #f9f9f9; /* Light gray background */
+  color: #333; /* Dark gray text color */
+}
+
+.container {
+  max-width: 900px; /* Max width for readability */
+  margin: 30px auto; /* Center container with vertical margin */
+  background: white; /* White background for resume */
+  padding: 40px; /* Padding inside container */
+  border: 1px solid #ccc; /* Light border */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+/* Header styles */
+header {
+  text-align: center; /* Center-align text */
+  margin-bottom: 25px; /* Space below header */
+}
+
+h1 {
+  font-size: 24px; /* Main title font size */
+  margin: 0; /* Remove default margin */
+}
+
+.headline {
+  font-size: 14px; /* Smaller font for tagline */
+  color: #555; /* Medium gray */
+}
+
+/* Contact info styles */
+.contact-info {
+  margin-top: 10px;
+  font-size: 13px;
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Wrap on smaller screens */
+  justify-content: center; /* Center horizontally */
+  gap: 12px; /* Space between items */
+  color: #444; /* Dark gray */
+}
+
+.contact-info a.link {
+  color: #2a7ae2; /* Blue link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.contact-info a.link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Horizontal rule styling */
+hr {
+  border: none;
+  border-top: 1px solid #ccc; /* Light top border line */
+  margin: 30px 0; /* Vertical spacing */
+}
+
+/* Layout for each section row */
+.row {
+  display: flex; /* Flexbox for row layout */
+  gap: 30px; /* Gap between title and content */
+  margin: 30px 0; /* Vertical margin */
+  align-items: flex-start; /* Align items to top */
+}
+
+.row h2 {
+  width: 160px; /* Fixed width for section titles */
+  flex-shrink: 0; /* Prevent shrinking */
+  font-size: 16px;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.row .content {
+  flex: 1; /* Take remaining horizontal space */
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Profiles Section styling */
+.profiles {
+  display: flex; /* Flex container for profile items */
+  justify-content: space-between; /* Evenly distribute */
+  flex-wrap: wrap; /* Wrap on small screens */
+}
+
+.profile-item {
+  flex: 1 1 140px; /* Flex-grow/shrink with base width */
+  text-align: center; /* Center text and icon */
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.profile-item strong {
+  display: inline-block; /* Inline but respects margins */
+  margin-left: 6px; /* Space after icon */
+  font-weight: 700; /* Bold */
+}
+
+.profile-label {
+  margin-top: 4px; /* Space above label */
+  font-size: 12px;
+  color: #666; /* Medium gray */
+}
+
+/* Icons styling - using background images */
+/* Inline-block for icon container, fixed size */
+.icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle; /* Align with text */
+  background-size: contain; /* Scale image */
+  background-repeat: no-repeat;
+}
+
+/* LinkedIn icon */
+.icon.linkedin {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/174/174857.png');
+}
+
+/* GitHub icon */
+.icon.github {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/733/733553.png');
+}
+
+/* StackOverflow icon */
+.icon.stackoverflow {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/2111/2111628.png');
+}
+
+/* Twitter icon */
+.icon.twitter {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/733/733579.png');
+}
+
+/* Medium icon */
+.icon.medium {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/5968/5968906.png');
+}
+
+/* Summary section styling */
+.summary {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Experience section */
+.experience-list {
+  width: 100%;
+}
+
+.experience-item {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.role-header {
+  display: flex; /* Flex layout for company name and date */
+  justify-content: space-between;
+  flex-wrap: wrap; /* Wrap if needed on small screens */
+  gap: 8px;
+  align-items: baseline; /* Align text baseline */
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.role-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.role-header time {
+  white-space: nowrap; /* Prevent date from wrapping */
+  font-weight: normal;
+  font-size: 13px;
+  color: #555;
+}
+
+.role-sub {
+  display: flex; /* Flex layout for role and location */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 13px;
+}
+
+.role-sub p {
+  margin: 0;
+}
+
+.experience-item a.link {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #2a7ae2;
+  text-decoration: none;
+}
+
+.experience-item a.link:hover {
+  text-decoration: underline;
+}
+
+.experience-item ul {
+  margin-top: 8px;
+  padding-left: 20px; /* Indent list */
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Two-column layout for definition lists (Education, Projects, etc.) */
+.two-column-table {
+  display: grid;
+  grid-template-columns: 140px 1fr; /* Fixed label, flexible content */
+  row-gap: 10px;
+  column-gap: 30px;
+  align-items: start; /* Align items to top */
+}
+
+.two-column-table dt {
+  font-weight: bold; /* Bold labels */
+}
+
+.two-column-table dd {
+  margin: 0; /* Remove default margin */
+}
+
+/* Responsive styles for small screens */
+@media screen and (max-width: 600px) {
+  .row {
+    flex-direction: column; /* Stack sections vertically */
+  }
+
+  .row h2 {
+    width: auto; /* Let heading take full width */
+    margin-bottom: 5px;
+  }
+
+  .profiles {
+    justify-content: center; /* Center profile items */
+  }
+
+  .profile-item {
+    flex: none; /* Disable flex grow/shrink */
+    margin: 8px 15px;
+  }
+
+  /* Make two-column tables single column on small screens */
+  .two-column-table {
+    grid-template-columns: 1fr;
+  }
+}

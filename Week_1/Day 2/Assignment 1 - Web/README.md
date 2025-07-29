@@ -1,65 +1,70 @@
-Testimonial Grid
-A responsive testimonial grid layout built using Tailwind CSS. This project showcases user testimonials with avatars, names, roles, and quotes, styled with modern design principles including gradients, shadows, and subtle animations.
+# Testimonial Grid
 
-Features
-Responsive grid layout with:
+A responsive testimonial grid layout built using **Tailwind CSS**. This project displays user testimonials with avatars, names, roles, and quotes — styled with modern design principles like gradients, shadows, and subtle animations.
 
-1 column on small screens
+## 🔗 Live Link
 
-2 columns on medium screens (md)
+Live Link: https://sarmadweek1day2.vercel.app/  
+Visit the link above to view the responsive testimonial grid in action.
 
-4 columns on large screens (lg)
+---
 
-Varied testimonial card styles:
+## ✨ Features
 
-Gradient background with white text
+- **Responsive Grid Layout**
+  - 1 column on small screens
+  - 2 columns on medium screens (`md`)
+  - 4 columns on large screens (`lg`)
 
-Dark background cards with white text
+- **Card Styles**
+  - Gradient backgrounds with white text
+  - Dark theme cards
+  - Light theme cards with borders
+  - Smooth scale animation on hover and active press
 
-Light background cards with dark text and borders
+- **Design & UX Enhancements**
+  - Decorative quotation icon with hover animation
+  - Avatars fetched from [randomuser.me](https://randomuser.me)
+  - Subtle hover transitions
+  - Accessibility-friendly alt text for images
 
-Smooth scale animation on hover and active press
+- **Technology Stack**
+  - HTML5
+  - Tailwind CSS via CDN
+  - Custom CSS for extra styling and animations
 
-Decorative quotation icon with hover animation on the featured testimonial
+---
 
-Avatar images fetched from randomuser.me
+## 🚀 Usage
 
-Accessibility improvements with alt text for images
+1. Clone or download the repository.
+2. Open the `index.html` file in your browser.
+3. The layout will adapt based on your screen size.
 
-Utility-first styling using Tailwind CSS CDN
+---
 
-Preview
+## 🛠️ Customization
 
-Usage
-Clone or download the repository.
+- **Change Avatars:**  
+  Update the `src` attribute of `<img>` tags to use different avatar images.
 
-Open the index.html file in your browser.
+- **Edit Content:**  
+  Modify testimonial text, names, and roles inside each testimonial card.
 
-The grid will automatically adjust columns and row spans based on your screen size.
+- **Add More Testimonials:**  
+  Duplicate an existing card block within the grid container to add more users.
 
-Customize testimonial content or styling as needed by editing the HTML and CSS.
+- **Adjust Colors or Layouts:**  
+  Use Tailwind utility classes or custom CSS to tweak colors, spacing, and layout.
 
-Technologies Used
-HTML5
+---
 
-Tailwind CSS (via CDN)
+## ⚙️ Technologies Used
 
-CSS for custom styling and animations
+- **HTML5** – Semantic markup  
+- **Tailwind CSS** – Utility-first CSS framework (via CDN)  
+- **Custom CSS** – For animations and enhancements
 
-Customization
-Update testimonial avatars by replacing the src attribute of <img> tags.
-
-Modify testimonial text and user details within the respective card divs.
-
-Adjust colors and gradients by changing Tailwind CSS utility classes or adding custom styles.
-
-Add more testimonials by duplicating existing card divs inside the grid container.
-
-Notes
-The quotation icon bg-pattern-quotation.svg is referenced but not included. Make sure to provide this image or replace it with your own.
-
-Tailwind CSS CDN is used for easy setup but can be replaced with a local build if desired.
-
-The grid uses CSS Grid with responsive column and row spans to create an interesting, dynamic layout.
+---
 
 

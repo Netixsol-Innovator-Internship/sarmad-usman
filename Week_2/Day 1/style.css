@@ -187,10 +187,11 @@ body.dark .clear-btn:hover {
 
 /* Message Box */
 .message {
+  position: relative;
   display: none;
   align-items: flex-start;
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 1rem 2.5rem 1rem 1rem; /* space for close btn on right */
   margin-top: 2rem;
   font-size: 0.9rem;
   line-height: 1.4;
@@ -198,6 +199,7 @@ body.dark .clear-btn:hover {
   border-bottom-right-radius: 6rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   transition: background 0.3s ease, color 0.3s ease;
+  cursor: default;
 }
 
 .message::before {
@@ -223,6 +225,26 @@ body.dark .clear-btn:hover {
 
 .message.success::before {
   content: "✅";
+}
+
+/* Close button in message box */
+#close-message {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  font-weight: bold;
+  user-select: none;
+}
+
+#close-message:hover {
+  color: var(--primary);
 }
 
 /* Responsive */

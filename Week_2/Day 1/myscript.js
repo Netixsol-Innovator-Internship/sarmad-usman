@@ -1,112 +1,163 @@
-// Helper function
+// Helper function to get element by id
 function byId(id) {
   return document.getElementById(id);
 }
 
-// Error message
+// Show or hide error message for a given input field
 function showError(id, message = "") {
   const el = byId(id);
   el.textContent = message;
   el.style.display = message ? "block" : "none";
 }
 
-// Display age
+// Update age display
 function displayAge(years, months, days) {
   byId("age-years").textContent = years;
   byId("age-months").textContent = months;
   byId("age-days").textContent = days;
 }
 
-// Message box
+// Show a message box with success or error type
 function showMessage(text, type = "success") {
   const box = byId("message-box");
-  box.textContent = text;
+  const textSpan = byId("message-text");
+  textSpan.textContent = text;
   box.className = `message ${type}`;
   box.style.display = "flex";
 }
 
-// Leap year check
+// Clear all inputs, errors, age display, and hide message box
+function clearAll() {
+  ["input-day", "input-month", "input-year"].forEach(id => {
+    byId(id).value = "";
+  });
+  clearAllErrors();
+  displayAge("--", "--", "--");
+  const box = byId("message-box");
+  box.style.display = "none";
+  byId("message-text").textContent = "";
+}
+
+// Check if a year is a leap year
 function isLeapYear(year) {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 
-// Days in month
+// Get number of days in a month for a given year
 function getDaysInMonth(monthIndex, year) {
-  const days = [
+  const daysInMonths = [
     31,
     isLeapYear(year) ? 29 : 28,
-    31, 30, 31, 30, 31,
-    31, 30, 31, 30, 31
+    31, 30, 31, 30,
+    31, 31, 30, 31, 30, 31
   ];
-  return days[monthIndex];
+  return daysInMonths[monthIndex];
 }
 
-// Age calculation
+// Clear all error messages
+function clearAllErrors() {
+  ["error-day", "error-month", "error-year"].forEach(id => {
+    showError(id, "");
+  });
+}
+
+// Clear a single input and its error
+function clearField(id) {
+  byId(id).value = "";
+  showError("error-" + id.split('-')[1], "");
+  displayAge("--", "--", "--");
+  byId("message-box").style.display = "none";
+}
+
+// Calculate age and validate inputs
 function calculateAge() {
-  const day = parseInt(byId("input-day").value);
-  const month = parseInt(byId("input-month").value) - 1;
-  const year = parseInt(byId("input-year").value);
+  clearAllErrors();
 
-  const today = new Date();
-  const currentYear = today.getFullYear();
+  let day = byId("input-day").value.trim();
+  let month = byId("input-month").value.trim();
+  let year = byId("input-year").value.trim();
 
-  let valid = true;
-  const errors = [];
+  let hasError = false;
+  const currentYear = new Date().getFullYear();
 
-  if (isNaN(month) || month < 0 || month > 11) {
-    showError("error-month", "Enter a valid month (1–12)");
-    errors.push("Month must be 1–12.");
-    valid = false;
+  // Validate Day
+  if (!day) {
+    showError("error-day", "This field is required");
+    hasError = true;
+  } else if (!/^\d+$/.test(day)) {
+    showError("error-day", "Must be a valid number");
+    hasError = true;
   } else {
-    showError("error-month");
-  }
-
-  if (isNaN(year) || year > currentYear || String(year).length !== 4) {
-    showError("error-year", `Enter a valid year (<= ${currentYear})`);
-    errors.push(`Year must be 4 digits and ≤ ${currentYear}.`);
-    valid = false;
-  } else {
-    showError("error-year");
-  }
-
-  if (!isNaN(month) && !isNaN(year)) {
-    const maxDay = getDaysInMonth(month, year);
-    if (isNaN(day) || day < 1 || day > maxDay) {
-      showError("error-day", `Enter a valid day (1–${maxDay})`);
-      errors.push(`Day must be 1–${maxDay}.`);
-      valid = false;
-    } else {
-      showError("error-day");
+    day = parseInt(day);
+    if (day < 1 || day > 31) {
+      showError("error-day", "Must be a valid day");
+      hasError = true;
     }
-  } else if (isNaN(day)) {
-    showError("error-day", "Enter a valid day");
-    errors.push("Day must be a number.");
-    valid = false;
   }
 
-  if (!valid) {
-    showMessage(errors.join(" "), "error");
+  // Validate Month
+  if (!month) {
+    showError("error-month", "This field is required");
+    hasError = true;
+  } else if (!/^\d+$/.test(month)) {
+    showError("error-month", "Must be a valid number");
+    hasError = true;
+  } else {
+    month = parseInt(month);
+    if (month < 1 || month > 12) {
+      showError("error-month", "Must be a valid month");
+      hasError = true;
+    }
+  }
+
+  // Validate Year
+  if (!year) {
+    showError("error-year", "This field is required");
+    hasError = true;
+  } else if (!/^\d+$/.test(year)) {
+    showError("error-year", "Must be a valid number");
+    hasError = true;
+  } else {
+    year = parseInt(year);
+    if (year > currentYear) {
+      showError("error-year", "Must be in the past");
+      hasError = true;
+    }
+  }
+
+  // Validate day in the given month/year
+  if (!hasError) {
+    const maxDay = getDaysInMonth(month - 1, year);
+    if (day > maxDay) {
+      showError("error-day", `Must be <= ${maxDay} for that month`);
+      hasError = true;
+    }
+  }
+
+  if (hasError) {
     displayAge("--", "--", "--");
+    showMessage("Please fix the errors above.", "error");
     return;
   }
 
-  const birthDate = new Date(year, month, day);
+  const birthDate = new Date(year, month - 1, day);
+  const today = new Date();
 
   if (birthDate > today) {
-    showMessage("You haven't been born yet!", "error");
+    showMessage("Birth date cannot be in the future.", "error");
     displayAge("--", "--", "--");
     return;
   }
 
-  let years = today.getFullYear() - year;
-  let months = today.getMonth() - month;
-  let days = today.getDate() - day;
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
 
   if (days < 0) {
     months--;
     const prevMonth = (today.getMonth() - 1 + 12) % 12;
-    const prevYear = prevMonth === 11 ? today.getFullYear() - 1 : today.getFullYear();
-    days += getDaysInMonth(prevMonth, prevYear);
+    const prevMonthYear = prevMonth === 11 ? today.getFullYear() - 1 : today.getFullYear();
+    days += getDaysInMonth(prevMonth, prevMonthYear);
   }
 
   if (months < 0) {
@@ -118,26 +169,24 @@ function calculateAge() {
   showMessage("Age calculated successfully!", "success");
 }
 
-// Clear individual field on cross button click
-function clearField(fieldId) {
-  const input = byId(fieldId);
-  input.value = "";
-  // Clear error related to that input
-  showError(`error-${fieldId.split('-')[1]}`);
-  // Reset age display and message box
-  displayAge("--", "--", "--");
-  const msgBox = byId("message-box");
-  msgBox.style.display = "none";
-  msgBox.textContent = "";
-}
+// Event listeners
 
-// Dark mode toggle
-const toggleBtn = byId("toggle-theme");
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  if (document.body.classList.contains("dark")) {
-    toggleBtn.textContent = "☀️";
-  } else {
-    toggleBtn.textContent = "🌙";
+// Clear all fields and errors on close button click
+byId("close-message").addEventListener("click", clearAll);
+
+// Clear individual field when clicking the cross (you need to add these to your HTML)
+["input-day", "input-month", "input-year"].forEach(id => {
+  const clearBtn = byId("clear-" + id.split('-')[1]);
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => clearField(id));
   }
 });
+
+// Toggle dark mode if you have a toggle button with id="toggle-theme"
+const toggleBtn = byId("toggle-theme");
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  });
+}

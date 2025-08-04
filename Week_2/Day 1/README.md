@@ -38,5 +38,5 @@ CSS
 JavaScript 
 
 Links
-Live Demo: 
+Live Demo: https://sarmad-week2-day1.vercel.app/
 

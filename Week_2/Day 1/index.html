@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Age Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Dark Mode Toggle Button -->
+  <button id="toggle-theme" aria-label="Toggle Dark Mode">🌙</button>
+
+  <div class="box">
+
+    <!-- Input Fields -->
+    <div class="inputs">
+
+      <div class="field">
+        <label for="input-day">Day</label>
+        <div class="input-wrapper">
+          <input type="text" id="input-day" />
+          <button class="clear-btn" aria-label="Clear Day input" onclick="clearField('input-day')">×</button>
+        </div>
+        <span class="msg" id="error-day"></span>
+      </div>
+
+      <div class="field">
+        <label for="input-month">Month</label>
+        <div class="input-wrapper">
+          <input type="text" id="input-month" />
+          <button class="clear-btn" aria-label="Clear Month input" onclick="clearField('input-month')">×</button>
+        </div>
+        <span class="msg" id="error-month"></span>
+      </div>
+
+      <div class="field">
+        <label for="input-year">Year</label>
+        <div class="input-wrapper">
+          <input type="text" id="input-year" />
+          <button class="clear-btn" aria-label="Clear Year input" onclick="clearField('input-year')">×</button>
+        </div>
+        <span class="msg" id="error-year"></span>
+      </div>
+
+    </div>
+
+    <!-- Divider and Calculate Button -->
+    <div class="divider">
+      <hr />
+      <button onclick="calculateAge()" aria-label="Calculate Age">
+        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44">
+          <g fill="none" stroke="#FFF" stroke-width="2">
+            <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/>
+          </g>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result">
+      <h2><span id="age-years">--</span> years</h2>
+      <h2><span id="age-months">--</span> months</h2>
+      <h2><span id="age-days">--</span> days</h2>
+    </div>
+
+    <!-- Message Box -->
+    <div id="message-box" class="message"></div>
+
+  </div>
+
+  <script src="myscript.js" defer></script>
+</body>
+</html>

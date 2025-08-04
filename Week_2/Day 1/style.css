@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* Default Light Theme */
+:root {
+  --bg: hsl(0, 0%, 94%);
+  --text: #333;
+  --card-bg: #fff;
+  --primary: hsl(259, 100%, 65%);
+  --divider: #ccc;
+  --btn-hover: hsl(0, 0%, 8%);
+  --error: #d32f2f;
+  --error-bg: #fff0f0;
+  --success-bg: #e9f8ef;
+  --success: #2e7d32;
+}
+
+/* Dark Theme Overrides */
+body.dark {
+  --bg: #121212;
+  --text: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --primary: #9575cd;
+  --divider: #444;
+  --btn-hover: #333;
+  --error-bg: #3a1e1e;
+  --success-bg: #1e3a2a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Toggle Button */
+#toggle-theme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Box */
+.box {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  border-bottom-right-radius: 6rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease;
+}
+
+/* Inputs */
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.field {
+  flex: 1 1 100px;
+  min-width: 80px;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--text);
+}
+
+/* Wrap input and clear button */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  padding-right: 1.8rem; /* room for clear button */
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Clear (X) button */
+.clear-btn {
+  position: absolute;
+  right: 0.4rem;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+  padding: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clear-btn:hover {
+  background-color: var(--divider);
+}
+
+body.dark .clear-btn {
+  color: var(--text);
+}
+
+body.dark .clear-btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.msg {
+  font-size: 0.7rem;
+  color: var(--error);
+  display: none;
+}
+
+.divider {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.divider hr {
+  border: none;
+  height: 1px;
+  background: var(--divider);
+}
+
+.divider button {
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: -25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.divider button:hover {
+  background: var(--btn-hover);
+}
+
+.result h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.result span {
+  color: var(--primary);
+}
+
+/* Message Box */
+.message {
+  display: none;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border-radius: 0.75rem;
+  border-bottom-right-radius: 6rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.message::before {
+  font-size: 1.3rem;
+  margin-top: 0.1rem;
+}
+
+.message.error {
+  background-color: var(--error-bg);
+  color: var(--error);
+  border: 1px solid #f4c7c7;
+}
+
+.message.error::before {
+  content: "❌";
+}
+
+.message.success {
+  background-color: var(--success-bg);
+  color: var(--success);
+  border: 1px solid #c7eac9;
+}
+
+.message.success::before {
+  content: "✅";
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .inputs {
+    flex-direction: column;
+  }
+
+  .divider button {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
+  }
+
+  .result h2 {
+    font-size: 2rem;
+  }
+}

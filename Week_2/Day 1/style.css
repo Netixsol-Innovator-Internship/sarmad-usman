@@ -145,6 +145,7 @@ body.dark .clear-btn:hover {
   font-size: 0.7rem;
   color: var(--error);
   display: none;
+  margin-top: 6px;
 }
 
 .divider {

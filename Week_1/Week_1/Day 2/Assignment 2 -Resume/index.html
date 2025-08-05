@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>John Doe Resume</title>
+  <!-- Link to external CSS stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- Header Section -->
+    <header>
+      <h1>John Doe</h1>
+      <p class="headline">Creative and Innovative Web Developer</p>
+      <!-- Contact Information -->
+      <address class="contact-info">
+        <span>📍 Pleasantville, CA 94588</span>
+        <span>📞 (555) 123-4567</span>
+        <span>📧 <a href="mailto:john.doe@gmail.com" class="link">john.doe@gmail.com</a></span>
+        <span>🌐 <a href="https://johndoe.me/" target="_blank" rel="noopener" class="link">johndoe.me</a></span>
+      </address>
+    </header>
+
+    <hr />
+
+    <!-- Profiles Section: Social Media and Professional Profiles -->
+    <section class="row profiles-section">
+      <h2>Profiles</h2>
+      <div class="content profiles">
+        <!-- Each profile item includes an icon, username, and label -->
+        <div class="profile-item">
+          <span class="icon linkedin" aria-hidden="true"></span>
+          <strong>johndoe</strong>
+          <div class="profile-label">LinkedIn</div>
+        </div>
+        <div class="profile-item">
+          <span class="icon github" aria-hidden="true"></span>
+          <strong>johndoe</strong>
+          <div class="profile-label">GitHub</div>
+        </div>
+        <div class="profile-item">
+          <span class="icon stackoverflow" aria-hidden="true"></span>
+          <strong>johndoe</strong>
+          <div class="profile-label">StackOverflow</div>
+        </div>
+        <div class="profile-item">
+          <span class="icon twitter" aria-hidden="true"></span>
+          <strong>@johndoe</strong>
+          <div class="profile-label">Twitter</div>
+        </div>
+        <div class="profile-item">
+          <span class="icon medium" aria-hidden="true"></span>
+          <strong>johndoe</strong>
+          <div class="profile-label">Medium</div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Summary Section: Short personal summary -->
+    <section class="row summary-section">
+      <h2>Summary</h2>
+      <div class="content summary">
+        Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and
+        applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards
+        and cutting-edge development techniques. Proven track record of leading successful projects from concept to
+        deployment.
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Experience Section: Job history with details -->
+    <section class="row experience-section">
+      <h2>Experience</h2>
+      <div class="content experience-list">
+        <!-- Each experience item includes company name, dates, role, location, link and responsibilities -->
+        <article class="experience-item">
+          <header class="role-header">
+            <h3>Creative Solutions Inc.</h3>
+            <time datetime="2019-01">January 2019 to Present</time>
+          </header>
+          <div class="role-sub">
+            <p>Senior Web Developer</p>
+            <p>San Francisco, CA</p>
+          </div>
+          <a href="https://creativesolutions.inc/" target="_blank" rel="noopener" class="link">https://creativesolutions.inc/</a>
+          <ul>
+            <li>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</li>
+            <li>Developed and implemented a new responsive framework, improving cross-device compatibility.</li>
+            <li>Mentored a team of four junior developers, fostering a culture of technical excellence.</li>
+          </ul>
+        </article>
+
+        <article class="experience-item">
+          <header class="role-header">
+            <h3>TechAdvancers</h3>
+            <time datetime="2016-06">June 2016 to December 2018</time>
+          </header>
+          <div class="role-sub">
+            <p>Web Developer</p>
+            <p>San Jose, CA</p>
+          </div>
+          <a href="https://techadvancers.com/" target="_blank" rel="noopener" class="link">https://techadvancers.com/</a>
+          <ul>
+            <li>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</li>
+            <li>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</li>
+            <li>Optimized application performance, achieving a 30% reduction in load times.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Education Section -->
+    <section class="row education-section">
+      <h2>Education</h2>
+      <!-- Definition list styled as two-column table -->
+      <dl class="content two-column-table">
+        <dt>University</dt><dd>University of California</dd>
+        <dt>Location</dt><dd>Berkeley, CA</dd>
+        <dt>Degree</dt><dd>Bachelor's in Computer Science</dd>
+        <dt>Dates</dt><dd>August 2012 – May 2016</dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- Projects Section -->
+    <section class="row projects-section">
+      <h2>Projects</h2>
+      <dl class="content two-column-table">
+        <dt>E-Commerce Platform</dt>
+        <dd>Led development of a full-stack e-commerce platform, improving sales conversion by 25%.</dd>
+        <dt>Interactive Dashboard</dt>
+        <dd>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- Skills Section -->
+    <section class="row skills-section">
+      <h2>Skills</h2>
+      <dl class="content two-column-table">
+        <dt>Web Technologies</dt><dd>HTML5, JavaScript, PHP, Python</dd>
+        <dt>Web Frameworks</dt><dd>React.js, Angular, Vue.js, Laravel, Django</dd>
+        <dt>Tools</dt><dd>Webpack, Git, Jenkins, Docker, JIRA</dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- Certifications Section -->
+    <section class="row certifications-section">
+      <h2>Certifications</h2>
+      <dl class="content two-column-table">
+        <dt>Full-Stack Web Development</dt><dd>CodeAcademy, 2020</dd>
+        <dt>AWS Certified Developer</dt><dd>Amazon Web Services, 2019</dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- Languages Section -->
+    <section class="row languages-section">
+      <h2>Languages</h2>
+      <dl class="content two-column-table">
+        <dt>English</dt><dd>Native Speaker</dd>
+        <dt>Spanish</dt><dd>Intermediate</dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- References Section -->
+    <section class="row references-section">
+      <h2>References</h2>
+      <div class="content">Available upon request</div>
+    </section>
+  </main>
+</body>
+</html>

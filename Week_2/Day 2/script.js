@@ -80,8 +80,8 @@ function renderNotifications() {
 
     const wrapper = document.createElement("div");
     wrapper.className = `flex flex-wrap sm:flex-nowrap items-start p-4 rounded-lg cursor-pointer
-      ${!n.read ? "bg-blue-50 dark:bg-blue-900" : "bg-white dark:bg-gray-700"}
-      hover:bg-blue-300 dark:hover:bg-blue-800 transition-colors duration-300`;
+      ${!n.read ? "bg-blue-50 dark:bg-gray-900" : "bg-white dark:bg-gray-700"}
+      hover:bg-blue-200 dark:hover:bg-gray-800 transition-colors duration-300`;
 
     wrapper.addEventListener("click", () => {
       notifications[index].read = true;

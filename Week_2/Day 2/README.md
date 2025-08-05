@@ -6,7 +6,7 @@ A responsive, modern notifications panel built using **HTML**, **Tailwind CSS**,
 
 ## 🌐 Live Demo
 
-🔗 View Live Site:   
+🔗 View Live Site:   https://sarmad-week2day2.vercel.app/
 ---
 
 ## ✨ Features

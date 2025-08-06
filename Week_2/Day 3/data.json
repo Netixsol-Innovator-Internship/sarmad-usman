@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "name": "Royal Cheese Burger with extra Fries",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 2,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 3,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 4,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 5,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 6,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/burgerimage.png",
+    "type": "burgers"
+  },
+  {
+    "id": 7,
+    "name": "Royal Cheese Burger with extra Fries",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 8,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 9,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 10,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 11,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 12,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/friesimage.png",
+    "type": "fries"
+  },
+  {
+    "id": 13,
+    "name": "Royal Cheese Burger with extra Fries",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd1.png",
+    "type": "cold-drinks"
+  },
+  {
+    "id": 14,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd2.png",
+    "type": "cold-drinks"
+  },
+  {
+    "id": 15,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd3.png",
+    "type": "cold-drinks"
+  },
+  {
+    "id": 16,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd4.png",
+    "type": "cold-drinks"
+  },
+  {
+    "id": 17,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd5.png",
+    "type": "cold-drinks"
+  },
+  {
+    "id": 18,
+    "name": "The classics for 3",
+    "items": [
+      "1 McChicken™",
+      "1 Big Mac™",
+      "1 Royal Cheeseburger",
+      "3 medium Fries",
+      "3 Cold Drinks"
+    ],
+    "price": 23.10,
+    "image": "images/cd6.png",
+    "type": "cold-drinks"
+  }
+]

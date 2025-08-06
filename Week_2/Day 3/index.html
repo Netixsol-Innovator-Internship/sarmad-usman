@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Figma Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    #menu-btn span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background-color: #14192C;
+      margin: 4px 0;
+      border-radius: 1px;
+    }
+    /* Prevent horizontal overflow */
+    html, body {
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <nav class="w-full py-4 px-4 md:px-24">
+    <div class="max-w-[1491px] mx-auto flex items-center justify-between flex-wrap md:flex-nowrap gap-4">
+
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img src="images/logo.png" alt="Order UK Logo" class="w-[140px] md:w-[215px] object-contain" />
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="hidden md:flex flex-grow justify-center gap-8 text-[#1E1E1E] text-base lg:text-[18px] font-medium whitespace-nowrap">
+        <li class="hover:text-orange-500 cursor-pointer">Home</li>
+        <li class="hover:text-orange-500 cursor-pointer">Special Offers</li>
+        <li class="bg-orange-500 text-white px-4 py-1 rounded-full cursor-pointer hover:bg-orange-600">Restaurants</li>
+        <li class="hover:text-orange-500 cursor-pointer">Track Order</li>
+      </ul>
+
+      <!-- Cart & Hamburger -->
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <!-- Cart -->
+        <a href="/cart" class="flex items-center gap-2 cursor-pointer hover:scale-105 transition">
+          <div class="w-[44px] h-[44px] bg-[#03081F] rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px] text-white" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 5h13m-9 0a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z" />
+            </svg>
+          </div>
+          <span class="text-[#14192C] text-sm md:text-base font-medium">Cart</span>
+        </a>
+
+        <!-- Hamburger (Mobile Only) -->
+        <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden flex flex-col items-center justify-center">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col text-[#1E1E1E] text-base font-medium px-4 mt-4 space-y-2">
+      <li class="hover:text-orange-500 cursor-pointer">Home</li>
+      <li class="hover:text-orange-500 cursor-pointer">Special Offers</li>
+      <li class="bg-orange-500 text-white px-4 py-1 rounded-full cursor-pointer hover:bg-orange-600 inline-block">
+        Restaurants
+      </li>
+      <li class="hover:text-orange-500 cursor-pointer">Track Order</li>
+    </ul>
+  </nav>
+
+<!-- Hero Section -->
+<section
+  class="relative rounded-xl max-w-[1300px] mx-auto px-6 py-10 flex flex-col lg:flex-row items-center lg:justify-between text-white h-auto lg:h-[400px] overflow-visible"
+>
+  <!-- Background Image -->
+  <div
+    class="absolute inset-0 bg-cover bg-center rounded-xl"
+    style="background-image: url('images/hero.png');"
+  ></div>
+
+  <!-- Dark Overlay -->
+  <div
+    class="absolute inset-0 rounded-xl"
+    style="background-color: rgba(3, 8, 31, 0.9);"
+  ></div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full space-y-10 lg:space-y-0"
+  >
+    <!-- Left Content -->
+    <div class="flex flex-col justify-center space-y-6 max-w-full lg:max-w-[560px] text-center lg:text-left px-4 lg:px-0">
+      <!-- Tagline -->
+      <p class="text-[18px] font-normal leading-tight font-poppins">
+        I'm lovin' it!
+      </p>
+
+      <!-- Main Heading -->
+      <h1 class="text-[28px] sm:text-[32px] md:text-[36px] lg:text-[45px] font-semibold leading-[32px] sm:leading-[38px] md:leading-[44px] lg:leading-[60px] font-poppins">
+        McDonald’s East London
+      </h1>
+
+      <!-- Buttons Row -->
+      <div class="flex flex-col sm:flex-row sm:justify-start sm:space-x-4 space-y-4 sm:space-y-0">
+        <!-- Minimum Order Button -->
+        <button
+          class="flex items-center justify-center sm:justify-start space-x-3 px-4 py-2 rounded-full border border-white text-white font-poppins font-medium text-[14px] sm:text-[16px] bg-transparent transition-colors duration-300 hover:bg-[#FC8A06] hover:text-white"
+        >
+          <img src="images/clock.png" alt="Minimum Order" class="w-5 h-5 sm:w-6 sm:h-6" />
+          <span>Minimum Order: 12 GBP</span>
+        </button>
+
+        <!-- Delivery Time Button -->
+        <button
+          class="flex items-center justify-center sm:justify-start space-x-3 px-4 py-2 rounded-full border border-white text-white font-poppins font-medium text-[14px] sm:text-[16px] bg-transparent transition-colors duration-300 hover:bg-[#FC8A06] hover:text-white"
+        >
+          <img src="images/cycle.png" alt="Delivery Time" class="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
+          <span>Delivery in 20-25 mins</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Content -->
+    <div class="relative max-w-full lg:max-w-[500px] px-4 lg:px-0">
+      <!-- Burger Image -->
+      <img
+        src="images/hero.png"
+        alt="Burger"
+        class="rounded-xl w-full max-w-[500px] h-auto object-cover"
+      />
+
+      <!-- Rating Badge -->
+      <img
+        src="images/herobutton.png"
+        alt="Rating"
+        class="absolute left-[-15px] sm:left-[-30px] bottom-[-7px] w-[70px] sm:w-[90px] lg:w-[110px] h-auto rounded-xl border border-[#0000001A]"
+        style="box-shadow: 0 0 5px #0000001A;"
+      />
+    </div>
+  </div>
+
+  <!-- Orange Bottom Button (half over hero, half below) -->
+  <button
+    class="absolute flex items-center space-x-4 bg-[#FC8A06] text-white font-poppins font-semibold rounded-tr-lg rounded-br-lg shadow-md transition-transform duration-300 hover:scale-105"
+    style="
+      width: 90vw;
+      max-width: 335px;
+      height: 61px;
+      left: 12.8%;
+      bottom: -30px;
+      transform: translateX(-50%);
+      z-index: 30;
+      padding-left: 20px;
+      padding-right: 20px;
+    "
+  >
+    <img src="images/clock.png" alt="Clock Icon" class="w-[29px] h-[29px]" />
+    <span
+      style="font-weight: 600; font-size: 18px; line-height: 66px; white-space: nowrap;"
+    >
+      Open until 3:00 AM
+    </span>
+  </button>
+</section>
+
+<!-- Offers and Search -->
+<div class="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mt-[60px] px-4 py-10">
+  <!-- Heading -->
+  <h2 class="text-[22px] sm:text-[26px] md:text-[32px] font-bold leading-[1.2] text-black font-poppins">
+    All Offers from McDonald’s East London
+  </h2>
+
+  <!-- Search Input -->
+  <div class="relative w-full sm:w-[320px] md:w-[360px] h-[48px]">
+    <input
+      type="text"
+      placeholder="Search from menu..."
+      class="w-full h-full pl-10 pr-4 rounded-full border border-[#00000099] placeholder:text-[#00000099] text-black font-poppins text-sm md:text-base focus:outline-none"
+    />
+    <img
+      src="images/searchicon.png"
+      alt="Search"
+      class="absolute top-1/2 left-3 w-[22px] h-[22px] md:w-[26px] md:h-[26px] transform -translate-y-1/2 opacity-60"
+    />
+  </div>
+</div>
+
+<!-- Menu Bar Section -->
+<section class="w-full bg-[#FC8A06] h-auto md:h-[96px] flex justify-center items-center py-4 md:py-0">
+  <div
+    class="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-2 max-w-[1200px] w-full px-4 overflow-x-auto no-scrollbar"
+  >
+    <!-- Active Menu Item -->
+    <button
+      class="px-8 py-2 bg-[#03081F] text-white font-bold rounded-full text-sm whitespace-nowrap flex-shrink-0
+             hover:bg-white hover:text-[#03081F] transition-colors duration-300"
+    >
+      Offers
+    </button>
+
+    <!-- Other Menu Items -->
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Burgers
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Fries
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Snacks
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Salads
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Cold drinks
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Happy Meal®
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Desserts
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Hot drinks
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Sauces
+    </button>
+    <button class="text-white font-bold text-sm whitespace-nowrap flex-shrink-0
+                   hover:bg-white hover:text-[#03081F] rounded-full px-4 py-2 transition-colors duration-300">
+      Orbit®
+    </button>
+  </div>
+</section>
+
+  <!-- .......................................................... -->
+   <!-- ......................cards................................... -->
+
+<section id="burgers-section" class="px-10 py-10 max-w-7xl mx-auto">
+  <h2 class="text-[44px] font-extrabold mb-10">Burgers</h2>
+  <div id="burgers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+</section>
+
+<section id="fries-section" class="px-10 py-10 max-w-7xl mx-auto">
+  <h2 class="text-[44px] font-extrabold mb-10" style="color: #FC8A06;">Fries</h2>
+  <div id="fries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+</section>
+
+<section id="cold-drinks-section" class="px-10 py-10 max-w-7xl mx-auto">
+  <h2 class="text-[44px] font-extrabold mb-10" style="color: #FC8A06;">Cold Drinks</h2>
+  <div id="cold-drinks-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+</section>
+
+<!-- Cart Icon -->
+<div class="fixed bottom-6 right-6 z-50">
+  <button id="cart-btn" class="relative bg-black text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6.6a1 1 0 001 1.4h12a1 1 0 001-1.4L17 13M7 13H5.4M17 13l1.2 6.6M6 21a1 1 0 102 0 1 1 0 00-2 0zm10 0a1 1 0 102 0 1 1 0 00-2 0z"/>
+    </svg>
+    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">0</span>
+  </button>
+</div>
+
+<!-- Cart Modal -->
+<div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-white rounded-[12px] w-[1270px] max-h-[1795px] overflow-hidden shadow-xl relative">
+    <div class="relative">
+      <img src="images/cart.png" alt="Cart Header" class="w-full h-40 object-cover" />
+      <button id="close-cart" class="absolute top-3 right-3 bg-[#f97316] rounded-full p-1 hover:bg-[#ea580c] transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <ul id="cart-items" class="max-h-[1100px] overflow-y-auto p-6">
+      <!-- Cart items injected here -->
+    </ul>
+
+    <!-- Combined Total and Delivery row -->
+    <div class="flex justify-between items-center px-6 py-4">
+      <div class="bg-[#FC8A06CC] rounded-lg px-4 py-2 font-bold text-white text-sm whitespace-nowrap">
+      <span id="cart-total">£0.00</span>
+      </div>
+      <div class="text-xs italic text-gray-500 whitespace-nowrap">
+        Delivery &amp; Tax will be calculated in the next step
+      </div>
+    </div>
+
+    <!-- Buttons container -->
+    <div class="flex justify-end items-center gap-6 px-6 pb-6">
+      <button id="take-me-back" class="text-black underline hover:text-gray-700">Take me back</button>
+      <button id="next-step" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">Next Step</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+   <!-- ....................................................................... -->
+
+<section class="py-10 px-5 bg-gray-200 relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-3xl font-bold">Customer Reviews</h2>
+            <div class="flex space-x-4">
+                <button id="prevBtn" class="w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center hover:bg-orange-600">
+                    <span class="text-xl">&#8249;</span>
+                </button>
+                <button id="nextBtn" class="w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center hover:bg-orange-600">
+                    <span class="text-xl">&#8250;</span>
+                </button>
+            </div>
+        </div>
+<!-- ................................................................................................... -->
+ <!-- ................................................................................................... -->
+
+        <!-- Slider Container -->
+        <div class="relative">
+            <!-- Cards Container - using grid for desktop -->
+            <div id="cardsContainer" class="grid md:grid-cols-3 gap-6">
+                <!-- Card 1 (Will rotate positions) -->
+                <div class="bg-white rounded-lg p-6 shadow transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="images/user.png" alt="Avatar" class="w-10 h-10 rounded-full mr-3" />
+                        <div>
+                            <h4 class="font-semibold">St Glx</h4>
+                            <p class="text-sm text-orange-300">South london</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                        <span>🕒 15th October, 2023</span>
+                    </div>
+                    <div class="flex justify-between items-center text-orange-400 mb-4">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="text-sm text-gray-700">
+                        Excellent service and food quality. The staff was very friendly and the place was clean.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-lg p-6 shadow transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="images/user.png" alt="Avatar" class="w-10 h-10 rounded-full mr-3" />
+                        <div>
+                            <h4 class="font-semibold">St Glx</h4>
+                            <p class="text-sm text-orange-300">South london</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                        <span>🕒 5th November, 2023</span>
+                    </div>
+                    <div class="flex justify-between items-center text-orange-400 mb-4">
+                        <span>★★★★☆</span>
+                    </div>
+                    <p class="text-sm text-gray-700">
+                        Good experience overall. The food was fresh and tasty. The only downside was the waiting time.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-lg p-6 shadow transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="images/user.png" alt="Avatar" class="w-10 h-10 rounded-full mr-3" />
+                        <div>
+                            <h4 class="font-semibold">St Glx</h4>
+                            <p class="text-sm text-orange-300">South london</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                        <span>🕒 20th December, 2023</span>
+                    </div>
+                    <div class="flex justify-between items-center text-orange-400 mb-4">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="text-sm text-gray-700">
+                        Best fast food experience I've had in a while. The order was accurate and the service was super fast.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Rating Section -->
+<!-- <div class="flex justify-center mt-8">
+    <div class="text-center bg-white px-8 py-4 rounded-xl shadow-lg relative z-10">
+        <div class="flex items-center justify-center mb-2">
+            Overall Rating Image
+            <img src="images/herobutton.png" alt="Overall Rating" class="w-32" />
+        </div>
+    </div>
+</div> -->
+
+<!-- ................................................................................................... -->
+ <!-- ................................................................................................... -->
+
+    <!-- Similar Restaurants Section -->
+<!-- Similar Restaurants Section -->
+<section class="px-6 md:px-20 py-10">
+  <h2 class="text-2xl font-semibold mb-6">Similar Restaurants</h2>
+
+  <!-- Responsive container with scroll on large screens -->
+  <div id="restaurant-container"
+       class="flex gap-4 overflow-x-auto lg:overflow-x-visible lg:flex-nowrap flex-wrap justify-start scroll-smooth">
+    <!-- Cards will be injected by JS -->
+  </div>
+</section>
+
+<!-- ................................ -->
+<!-- ........................................ -->
+<!-- ...................................... -->
+
+<!-- ............................................................................................................... -->
+<!-- Footer -->
+<footer class="bg-[#F1F1F1] text-[#03081F] px-6 md:px-12 xl:px-20 py-10 font-[Poppins]">
+  <div class="max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between gap-10">
+
+    <!-- Logo + Store + Company Info -->
+    <div class="space-y-4 max-w-[350px]">
+      <img src="images/footerlogo.png" alt="Order UK" class="w-[180px] md:w-[255px] h-auto object-contain" />
+
+      <div class="flex gap-2 flex-wrap">
+        <img src="images/applestore.png" alt="App Store" class="w-[130px] sm:w-[150px] h-auto bg-[#A6A6A6] object-contain rounded-md" />
+        <img src="images/googleplay.png" alt="Google Play" class="w-[150px] sm:w-[180px] h-auto bg-[#A6A6A6] object-contain rounded-md" />
+      </div>
+
+      <p class="text-[15px] leading-[100%] text-black max-w-[311px]">
+        Company # 490039–445, Registered with House of companies.
+      </p>
+    </div>
+
+    <!-- Email Form + Social Icons -->
+    <div class="space-y-4 max-w-[450px] w-full">
+      <h3 class="text-[18px] font-bold leading-[43px]">Get Exclusive Deals in your Inbox</h3>
+
+      <!-- Email Form -->
+      <form class="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-0 bg-[#D9D9D9] rounded-full overflow-hidden w-full">
+        <input
+          type="email"
+          placeholder="youremail@gmail.com"
+          class="flex-grow min-w-[180px] h-[48px] bg-[#D9D9D9] text-black text-[15px] font-normal px-4 outline-none placeholder:text-black"
+        />
+        <button
+          type="submit"
+          class="h-[48px] sm:h-[48px] px-6 sm:px-8 bg-[#FC8A06] text-white text-[16px] font-medium rounded-full whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <p class="text-sm text-black">
+        we won’t spam, read our <a href="#" class="underline">email policy</a>
+      </p>
+
+      <!-- Social Icons -->
+      <div class="flex gap-4 pt-2 flex-wrap">
+        <img src="images/facebook.png" alt="Facebook" class="w-[45px] h-[45px]" />
+        <img src="images/instagram.png" alt="Instagram" class="w-[45px] h-[45px]" />
+        <img src="images/tiktok.png" alt="TikTok" class="w-[45px] h-[45px]" />
+        <img src="images/snapchat.png" alt="Snapchat" class="w-[45px] h-[45px]" />
+      </div>
+    </div>
+
+    <!-- Legal & Important Links -->
+    <div class="flex flex-col sm:flex-row gap-10 max-w-[350px]">
+      <!-- Legal Pages -->
+      <div>
+        <h3 class="text-[18px] font-bold leading-[43px] mb-2">Legal Pages</h3>
+        <ul class="space-y-1 text-[15px] underline">
+          <li><a href="#">Terms and conditions</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Modern Slavery Statement</a></li>
+        </ul>
+      </div>
+
+      <!-- Important Links -->
+      <div>
+        <h3 class="text-[18px] font-bold leading-[43px] mb-2">Important Links</h3>
+        <ul class="space-y-1 text-[15px] underline">
+          <li><a href="#">Get help</a></li>
+          <li><a href="#">Add your restaurant</a></li>
+          <li><a href="#">Sign up to deliver</a></li>
+          <li><a href="#">Create a business account</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer Bottom Bar -->
+<div class="bg-[#03081F] text-white font-[Poppins] px-6 md:px-12 xl:px-20 py-4">
+  <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center text-[15px] leading-[100%] gap-4">
+    
+    <!-- Left Side -->
+    <p class="text-center md:text-left">
+      Order.uk Copyright 2025, All Rights Reserved.
+    </p>
+    
+    <!-- Right Side Links -->
+    <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-center">
+      <a href="#" class="hover:underline">Privacy Policy</a>
+      <a href="#" class="hover:underline">Terms</a>
+      <a href="#" class="hover:underline">Pricing</a>
+      <a href="#" class="hover:underline">Do not sell or share my personal information</a>
+    </div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

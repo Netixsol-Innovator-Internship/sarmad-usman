@@ -559,6 +559,14 @@
       /* Each card takes full width on mobile */
       flex: 0 0 100%;
       scroll-snap-align: start;
+
+      /* Add right margin for spacing */
+      margin-right: 1rem;
+    }
+
+    /* Remove margin on last card to avoid extra space */
+    #cardsContainer > div:last-child {
+      margin-right: 0;
     }
 
     /* On medium screens and above, revert to grid */
@@ -573,6 +581,9 @@
       #cardsContainer > div {
         flex: none;
         scroll-snap-align: none;
+
+        /* Remove margin on desktop */
+        margin-right: 0;
       }
     }
   </style>
@@ -657,6 +668,7 @@
 
 
 
+
 <!-- Rating Section -->
 <!-- <div class="flex justify-center mt-8">
     <div class="text-center bg-white px-8 py-4 rounded-xl shadow-lg relative z-10">
@@ -722,22 +734,24 @@
       <h3 class="text-[18px] font-bold leading-[43px]">Get Exclusive Deals in your Inbox</h3>
 
       <!-- Email Form -->
-      <form
-  class="flex flex-col sm:flex-row items-center gap-3 sm:gap-0 bg-[#D9D9D9] rounded-full overflow-hidden w-full max-w-md mx-auto lg:mx-0"
+    <form
+  class="flex items-center gap-3 bg-[#D9D9D9] rounded-full overflow-hidden w-full max-w-md mx-auto lg:mx-0"
 >
   <input
     type="email"
     placeholder="youremail@gmail.com"
-    class="flex-grow min-w-[180px] h-[48px] bg-[#D9D9D9] text-black text-[15px] font-normal px-4 outline-none placeholder:text-black rounded-full sm:rounded-none w-full sm:w-auto"
+    class="flex-grow min-w-[180px] h-[48px] bg-[#D9D9D9] text-black text-[15px] font-normal px-4 outline-none placeholder:text-black rounded-l-full rounded-r-none"
     required
   />
   <button
     type="submit"
-    class="h-[48px] sm:h-[48px] px-6 sm:px-8 bg-[#FC8A06] text-white text-[16px] font-medium rounded-full whitespace-nowrap transition-colors duration-300 ease-in-out hover:bg-[#e57700] hover:shadow-[0_0_15px_rgba(252,138,6,0.8)] cursor-pointer w-full sm:w-auto"
+    class="h-[48px] px-6 min-w-[120px] bg-[#FC8A06] text-white text-[16px] font-medium rounded-full whitespace-nowrap transition-colors duration-300 ease-in-out hover:bg-[#e57700] hover:shadow-[0_0_15px_rgba(252,138,6,0.8)] cursor-pointer"
   >
     Subscribe
   </button>
 </form>
+
+
 
       <p class="text-sm text-black">
         we won’t spam, read our <a href="#" class="underline">email policy</a>

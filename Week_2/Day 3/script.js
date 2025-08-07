@@ -1,41 +1,44 @@
+// Get references to menu toggle elements
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
+// Toggle mobile menu visibility when the menu button is clicked
 menuBtn.addEventListener('click', () => {
   mobileMenu.classList.toggle('hidden');
 });
 
+// Initialize empty cart array
 let cart = [];
+let productsCache = null;
+let toastTimeout = null;
 
+// Fetch product data once and cache it
 fetch("data.json")
   .then(res => res.json())
   .then(products => {
-    // Filter by type and render each section grid
+    productsCache = products; // Cache all products
     renderProducts(products.filter(p => p.type === "burgers"), "burgers-grid");
     renderProducts(products.filter(p => p.type === "fries"), "fries-grid");
     renderProducts(products.filter(p => p.type === "cold-drinks"), "cold-drinks-grid");
   });
 
+// Render products into container
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
-  container.innerHTML = ""; // Clear existing content
+  container.innerHTML = "";
 
   products.forEach(product => {
     const card = document.createElement("div");
-
     card.className = "bg-white rounded-xl border border-gray-100 flex justify-between items-center p-5";
     card.style.boxShadow = "0 0 8px 0 rgba(0, 0, 0, 0.12)";
-
     card.innerHTML = `
       <div class="w-3/5 flex flex-col justify-start">
         <h3 class="font-semibold text-black text-base leading-tight mb-1">${product.name}</h3>
         <p class="text-gray-800 text-xs leading-snug mb-3" style="line-height: 1.3;">${product.items.join(", ")}</p>
         <span class="font-bold text-black text-sm">GBP ${product.price.toFixed(2)}</span>
       </div>
-
       <div class="relative w-2/5 h-[130px] rounded-xl overflow-hidden flex items-center justify-center">
         <img src="${product.image}" alt="${product.name}" class="object-cover w-[160px] h-[110px] rounded-lg shadow-md" />
-
         <div class="absolute top-[5rem] left-[5rem] w-16 h-[4rem] bg-white rounded-xl border border-white border-2xl flex items-center justify-center">
           <button data-id="${product.id}" class="add-to-cart bg-[#0A1334] w-6 h-6 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -45,36 +48,51 @@ function renderProducts(products, containerId) {
         </div>
       </div>
     `;
-
     container.appendChild(card);
   });
 }
 
-// Add to cart logic
+// Event delegation for add-to-cart buttons
 document.addEventListener("click", e => {
-  if (e.target.closest(".add-to-cart")) {
-    const btn = e.target.closest(".add-to-cart");
+  const btn = e.target.closest(".add-to-cart");
+  if (btn) {
     const productId = parseInt(btn.getAttribute("data-id"));
     addToCart(productId);
   }
 });
 
-function addToCart(id) {
-  fetch("data.json")
-    .then(res => res.json())
-    .then(products => {
-      const product = products.find(p => p.id === id);
+// Show toast message with reset timeout
+function showToast(message = "Product added to cart") {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.remove("opacity-0", "pointer-events-none");
+  toast.classList.add("opacity-100");
 
-      const cartItem = cart.find(item => item.id === id);
-      if (cartItem) {
-        cartItem.qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
-      updateCartUI();
-    });
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.add("opacity-0", "pointer-events-none");
+    toast.classList.remove("opacity-100");
+  }, 2000);
 }
 
+// Add product to cart using cached products
+function addToCart(id) {
+  if (!productsCache) return; // Safety check if cache not loaded yet
+
+  const product = productsCache.find(p => p.id === id);
+  if (!product) return;
+
+  const cartItem = cart.find(item => item.id === id);
+  if (cartItem) {
+    cartItem.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  updateCartUI();
+  showToast();
+}
+
+// Update cart UI: count, items list, total price
 function updateCartUI() {
   const cartCount = document.getElementById("cart-count");
   const cartItems = document.getElementById("cart-items");
@@ -85,9 +103,8 @@ function updateCartUI() {
   cartItems.innerHTML = "";
   let total = 0;
 
-  cart.forEach((item) => {
+  cart.forEach(item => {
     total += item.price * item.qty;
-
     const isSelected = item.qty > 1;
 
     const li = document.createElement("li");
@@ -95,7 +112,6 @@ function updateCartUI() {
       flex items-center justify-between px-6 py-4 mb-3 rounded-lg
       ${isSelected ? 'bg-[#0a1537]' : 'bg-gray-200'}
     `;
-
     li.innerHTML = `
       <div class="flex items-center gap-5 w-3/5">
         <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-full object-cover border border-gray-400" />
@@ -107,7 +123,6 @@ function updateCartUI() {
         <button data-id="${item.id}" class="increase-qty text-2xl font-bold px-3 py-1 rounded bg-gray-300 hover:bg-gray-400 transition">+</button>
       </div>
     `;
-
     cartItems.appendChild(li);
   });
 
@@ -117,7 +132,7 @@ function updateCartUI() {
   `;
 }
 
-// Modal toggle
+// Open cart modal only if cart is not empty
 document.getElementById("cart-btn").addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Your cart is empty.");
@@ -126,15 +141,15 @@ document.getElementById("cart-btn").addEventListener("click", () => {
   document.getElementById("cart-modal").classList.remove("hidden");
 });
 
+// Close cart modal handlers
 document.getElementById("close-cart").addEventListener("click", () => {
   document.getElementById("cart-modal").classList.add("hidden");
 });
-
 document.getElementById("take-me-back").addEventListener("click", () => {
   document.getElementById("cart-modal").classList.add("hidden");
 });
 
-// Quantity buttons in cart modal
+// Quantity change buttons inside cart modal
 document.getElementById("cart-items").addEventListener("click", e => {
   if (e.target.classList.contains("increase-qty")) {
     const id = parseInt(e.target.getAttribute("data-id"));
@@ -146,6 +161,7 @@ document.getElementById("cart-items").addEventListener("click", e => {
   }
 });
 
+// Change cart item quantity and update or remove
 function changeQty(id, delta) {
   const item = cart.find(i => i.id === id);
   if (!item) return;
@@ -156,53 +172,49 @@ function changeQty(id, delta) {
   }
   updateCartUI();
 }
- document.addEventListener('DOMContentLoaded', function() {
-        const container = document.getElementById('cardsContainer');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const cards = Array.from(container.children);
-        
-        // For mobile: keep original slider behavior
-        if (window.innerWidth < 768) {
-            // Mobile slider implementation would go here
-            return;
-        }
-        
-        // Desktop: rotating queue effect
-        function rotateNext() {
-            // Move first card to end
-            const firstCard = cards.shift();
-            cards.push(firstCard);
-            updateDisplay();
-        }
-        
-        function rotatePrev() {
-            // Move last card to beginning
-            const lastCard = cards.pop();
-            cards.unshift(lastCard);
-            updateDisplay();
-        }
-        
-        function updateDisplay() {
-            // Clear container
-            while (container.firstChild) {
-                container.removeChild(container.firstChild);
-            }
-            // Add cards in new order
-            cards.forEach(card => {
-                container.appendChild(card);
-            });
-        }
-        
-        nextBtn.addEventListener('click', rotateNext);
-        prevBtn.addEventListener('click', rotatePrev);
-        
-        // Optional: Auto-rotate every 5 seconds
-        // setInterval(rotateNext, 5000);
-    });
 
-    // script.js
+// Card rotation logic (if you keep it, otherwise remove)
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('cardsContainer');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
 
+  if (!container || !prevBtn || !nextBtn) return;
+
+  const cards = Array.from(container.children);
+
+  if (window.innerWidth < 768) {
+    return; // Skip rotation on mobile
+  }
+
+  function rotateNext() {
+    const firstCard = cards.shift();
+    cards.push(firstCard);
+    updateDisplay();
+  }
+
+  function rotatePrev() {
+    const lastCard = cards.pop();
+    cards.unshift(lastCard);
+    updateDisplay();
+  }
+
+  function updateDisplay() {
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+    cards.forEach(card => container.appendChild(card));
+  }
+
+  nextBtn.addEventListener('click', rotateNext);
+  prevBtn.addEventListener('click', rotatePrev);
+
+  // Optional auto-rotate
+  // setInterval(rotateNext, 5000);
+});
+
+
+// Static list of restaurant cards
 const restaurants = [
   {
     name: "McDonald's London",
@@ -236,20 +248,27 @@ const restaurants = [
   }
 ];
 
+// Render static restaurant cards on page
 const container = document.getElementById('restaurant-container');
 
 restaurants.forEach((restaurant) => {
   const card = document.createElement('div');
-  card.className = 'w-[238px] h-[203px] bg-white shadow rounded-[12px] overflow-hidden';
 
+  // Set styles and animation on hover
+  card.className = `
+    w-[238px] h-[203px] bg-white shadow rounded-[12px] overflow-hidden 
+    transform transition-transform duration-300 hover:scale-105 hover:shadow-lg
+  `;
+
+  // Set card content with image and title
   card.innerHTML = `
     <div class="${restaurant.bgColor} h-[150px] flex items-center justify-center rounded-t-[12px]">
-      <img src="${restaurant.image}" alt="${restaurant.name}" class="h-[80px] object-contain">
+      <img src="${restaurant.image}" alt="${restaurant.name}" class="h-[100px] max-h-full object-contain">
     </div>
     <div class="bg-orange-400 h-[53px] flex items-center justify-center text-white font-medium text-sm">
       ${restaurant.name}
     </div>
   `;
 
-  container.appendChild(card);
+  container.appendChild(card); // Append to DOM
 });

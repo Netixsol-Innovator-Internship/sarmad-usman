@@ -80,28 +80,23 @@ customInput.addEventListener('input', () => {
   calculate();
 });
 
-// People input with error check and max limit 50
+const errorContainer = document.querySelector('.main-error-message');
+
 peopleInput.addEventListener('input', () => {
-  const error = document.querySelector('.main-error-message');
   let val = parseInt(peopleInput.value);
 
   if (isNaN(val) || val <= 0) {
-    peopleInput.classList.add('border-red-500');
-    if (!error) {
-      const errMsg = document.createElement('p');
-      errMsg.className = 'main-error-message text-red-500 text-sm mb-2';
-      errMsg.textContent = "Can't be zero";
-      peopleInput.parentElement.insertBefore(errMsg, peopleInput);
-    }
+    peopleInput.classList.add('border', 'border-red-500');
+    errorContainer.textContent = "Can't be zero";
   } else if (val > 50) {
     peopleInput.value = 50;
     showToast('Number of people cannot exceed 50');
-    peopleInput.classList.remove('border-red-500');
-    if (error) error.remove();
+    peopleInput.classList.remove('border', 'border-red-500');
+    errorContainer.textContent = '';
     calculate();
   } else {
-    peopleInput.classList.remove('border-red-500');
-    if (error) error.remove();
+    peopleInput.classList.remove('border', 'border-red-500');
+    errorContainer.textContent = '';
     calculate();
   }
 });

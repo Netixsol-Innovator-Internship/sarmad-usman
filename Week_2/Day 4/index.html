@@ -85,7 +85,7 @@
       }
 
       /* Dark mode shadow blink animation */
-      @keyframes shadowBlink {
+      /* @keyframes shadowBlink {
         0%, 100% {
           box-shadow:
             0 0 20px 4px rgba(38, 194, 174, 0.7),
@@ -96,7 +96,7 @@
             0 0 40px 8px rgba(38, 194, 174, 1),
             0 0 60px 12px rgba(38, 194, 174, 0.6);
         }
-      }
+      } */
 
       body.dark main {
         animation: shadowBlink 3s ease-in-out infinite;
@@ -189,20 +189,25 @@
         </div>
 
         <!-- People Input -->
-        <div>
-          <label for="people" class="block text-[#5E7A7D] text-lg font-semibold mb-1">
-            Number of People
-          </label>
-          <div class="relative">
-            <img src="./images/icon-person.svg" class="absolute left-4 top-1/2 -translate-y-1/2 w-5" />
-            <input
-              id="people"
-              type="number"
-              placeholder="0"
-              class="w-full pl-12 pr-4 py-3 rounded-md bg-[#F3F9FA] text-[#00474B] text-2xl text-right focus:outline-2 focus:outline-[#26C2AE] transition-all"
-            />
-          </div>
-        </div>
+       <div class="mb-4">
+  <label for="people" class="block text-[#5E7A7D] text-lg font-semibold mb-1">
+    Number of People
+  </label>
+  
+  <!-- Error message container (leave empty at first) -->
+  <p class="main-error-message text-red-500 text-sm mb-1 h-5"></p>
+
+  <div class="relative">
+    <img src="./images/icon-person.svg" class="icon absolute left-4 top-1/2 -translate-y-1/2 w-5 transition-all" />
+    <input
+      id="people"
+      type="number"
+      placeholder="0"
+      class="people-input w-full pl-12 pr-4 py-3 rounded-md bg-[#F3F9FA] text-[#00474B] text-2xl text-right focus:outline-2 focus:outline-[#26C2AE] transition-all"
+    />
+  </div>
+</div>
+
       </section>
 
       <!-- Right Section -->

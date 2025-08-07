@@ -298,45 +298,74 @@
   </button>
 </div>
 
-<!-- Cart Modal -->
-<div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-  <div class="bg-white rounded-[12px] w-[1270px] max-h-[1795px] overflow-hidden shadow-xl relative">
-    <div class="relative">
-      <img src="images/cart.png" alt="Cart Header" class="w-full h-40 object-cover" />
-      <button id="close-cart" class="absolute top-3 right-3 bg-[#f97316] rounded-full p-1 hover:bg-[#ea580c] transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
+<button id="cart-btn" class="fixed top-5 right-5 bg-orange-600 text-white px-4 py-2 rounded shadow-lg z-50">
+    Cart (<span id="cart-count">0</span>)
+  </button>
 
-    <ul id="cart-items" class="max-h-[1100px] overflow-y-auto p-6">
-      <!-- Cart items injected here -->
-    </ul>
-
-    <!-- Combined Total and Delivery row -->
-    <div class="flex justify-between items-center px-6 py-4">
-      <div class="bg-[#FC8A06CC] rounded-lg px-4 py-2 font-bold text-white text-sm whitespace-nowrap">
-      <span id="cart-total">£0.00</span>
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+    <div
+      class="bg-white rounded-[12px] w-full max-w-[1270px] max-h-[90vh] overflow-hidden shadow-xl relative
+             flex flex-col"
+      style="min-width: 320px;"
+    >
+      <div class="relative flex-shrink-0">
+        <img src="images/cart.png" alt="Cart Header" class="w-full h-40 object-cover rounded-t-[12px]" />
+        <button
+          id="close-cart"
+          class="absolute top-3 right-3 bg-[#f97316] rounded-full p-1 hover:bg-[#ea580c] transition"
+          aria-label="Close cart"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-      <div class="text-xs italic text-gray-500 whitespace-nowrap">
-        Delivery &amp; Tax will be calculated in the next step
-      </div>
-    </div>
 
-    <!-- Buttons container -->
-    <div class="flex justify-end items-center gap-6 px-6 pb-6">
-      <button id="take-me-back" class="text-black underline hover:text-gray-700">Take me back</button>
-      <button id="next-step" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">Next Step</button>
+      <ul id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-3">
+        <!-- Cart items injected here -->
+      </ul>
+
+      <!-- Combined Total and Delivery row -->
+      <div class="flex flex-col sm:flex-row justify-between items-center px-6 py-4 gap-2 sm:gap-0 border-t border-gray-200">
+        <div class="bg-[#FC8A06CC] rounded-lg px-4 py-2 font-bold text-white text-sm whitespace-nowrap">
+          <span id="cart-total">£0.00</span>
+        </div>
+        <div class="text-xs italic text-gray-500 whitespace-nowrap sm:text-right">
+          Delivery &amp; Tax will be calculated in the next step
+        </div>
+      </div>
+
+      <!-- Buttons container -->
+      <div class="flex flex-col sm:flex-row justify-end items-center gap-4 px-6 py-4">
+        <button
+          id="take-me-back"
+          class="text-black underline hover:text-gray-700 w-full sm:w-auto text-center"
+        >
+          Take me back
+        </button>
+        <button
+          id="next-step"
+          class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition w-full sm:w-auto"
+        >
+          Next Step
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="toast"
-     class="fixed bottom-20 right-16 bg-orange-600 text-white px-4 py-2 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50">
-  Product added to cart
-</div>
+  <!-- Toast -->
+  <div
+    id="toast"
+    class="fixed bottom-20 right-4 sm:right-16 bg-orange-600 text-white px-4 py-2 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50 max-w-xs"
+  >
+    Product added to cart
+  </div>
 
+  <!-- Sample containers for products (for reference) -->
+  <div id="burgers-grid" class="p-6"></div>
+  <div id="fries-grid" class="p-6"></div>
+  <div id="cold-drinks-grid" class="p-6"></div>
    <!-- ....................................................................... -->
            <div class="flex justify-center items-center min-h-screen p-4 bg-[#FBFBFB]">
   <div
@@ -693,20 +722,22 @@
       <h3 class="text-[18px] font-bold leading-[43px]">Get Exclusive Deals in your Inbox</h3>
 
       <!-- Email Form -->
-      <form class="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-0 bg-[#D9D9D9] rounded-full overflow-hidden w-full max-w-md mx-auto lg:mx-0">
-        <input
-          type="email"
-          placeholder="youremail@gmail.com"
-          class="flex-grow min-w-[180px] h-[48px] bg-[#D9D9D9] text-black text-[15px] font-normal px-4 outline-none placeholder:text-black rounded-full sm:rounded-none"
-          required
-        />
-        <button
-          type="submit"
-          class="h-[48px] sm:h-[48px] px-6 sm:px-8 bg-[#FC8A06] text-white text-[16px] font-medium rounded-full whitespace-nowrap transition-colors duration-300 ease-in-out hover:bg-[#e57700] hover:shadow-[0_0_15px_rgba(252,138,6,0.8)] cursor-pointer"
-        >
-          Subscribe
-        </button>
-      </form>
+      <form
+  class="flex flex-col sm:flex-row items-center gap-3 sm:gap-0 bg-[#D9D9D9] rounded-full overflow-hidden w-full max-w-md mx-auto lg:mx-0"
+>
+  <input
+    type="email"
+    placeholder="youremail@gmail.com"
+    class="flex-grow min-w-[180px] h-[48px] bg-[#D9D9D9] text-black text-[15px] font-normal px-4 outline-none placeholder:text-black rounded-full sm:rounded-none w-full sm:w-auto"
+    required
+  />
+  <button
+    type="submit"
+    class="h-[48px] sm:h-[48px] px-6 sm:px-8 bg-[#FC8A06] text-white text-[16px] font-medium rounded-full whitespace-nowrap transition-colors duration-300 ease-in-out hover:bg-[#e57700] hover:shadow-[0_0_15px_rgba(252,138,6,0.8)] cursor-pointer w-full sm:w-auto"
+  >
+    Subscribe
+  </button>
+</form>
 
       <p class="text-sm text-black">
         we won’t spam, read our <a href="#" class="underline">email policy</a>

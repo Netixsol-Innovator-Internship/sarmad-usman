@@ -14,12 +14,12 @@ let toastTimeout = null;
 
 // Fetch product data once and cache it
 fetch("data.json")
-  .then(res => res.json())
-  .then(products => {
+  .then((res) => res.json())
+  .then((products) => {
     productsCache = products; // Cache all products
-    renderProducts(products.filter(p => p.type === "burgers"), "burgers-grid");
-    renderProducts(products.filter(p => p.type === "fries"), "fries-grid");
-    renderProducts(products.filter(p => p.type === "cold-drinks"), "cold-drinks-grid");
+    renderProducts(products.filter((p) => p.type === "burgers"), "burgers-grid");
+    renderProducts(products.filter((p) => p.type === "fries"), "fries-grid");
+    renderProducts(products.filter((p) => p.type === "cold-drinks"), "cold-drinks-grid");
   });
 
 // Render products into container
@@ -27,7 +27,7 @@ function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  products.forEach(product => {
+  products.forEach((product) => {
     const card = document.createElement("div");
     card.className = `
       bg-white rounded-xl border border-gray-100 
@@ -57,7 +57,7 @@ function renderProducts(products, containerId) {
 }
 
 // Event delegation for add-to-cart buttons
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
   const btn = e.target.closest(".add-to-cart");
   if (btn) {
     const productId = parseInt(btn.getAttribute("data-id"));
@@ -83,10 +83,10 @@ function showToast(message = "Product added to cart") {
 function addToCart(id) {
   if (!productsCache) return; // Safety check if cache not loaded yet
 
-  const product = productsCache.find(p => p.id === id);
+  const product = productsCache.find((p) => p.id === id);
   if (!product) return;
 
-  const cartItem = cart.find(item => item.id === id);
+  const cartItem = cart.find((item) => item.id === id);
   if (cartItem) {
     cartItem.qty += 1;
   } else {
@@ -107,23 +107,23 @@ function updateCartUI() {
   cartItems.innerHTML = "";
   let total = 0;
 
-  cart.forEach(item => {
+  cart.forEach((item) => {
     total += item.price * item.qty;
     const isSelected = item.qty > 1;
 
     const li = document.createElement("li");
     li.className = `
-      flex items-center justify-between px-6 py-4 mb-3 rounded-lg
-      ${isSelected ? 'bg-[#0a1537]' : 'bg-gray-200'}
+      flex flex-col sm:flex-row items-center justify-between px-4 py-3 rounded-lg
+      ${isSelected ? "bg-[#0a1537]" : "bg-gray-200"}
     `;
     li.innerHTML = `
-      <div class="flex items-center gap-5 w-3/5">
+      <div class="flex items-center gap-4 w-full sm:w-3/5 mb-2 sm:mb-0">
         <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-full object-cover border border-gray-400" />
-        <span class="font-semibold ${isSelected ? 'text-[#f97316]' : 'text-black'}">${item.name}</span>
+        <span class="font-semibold ${isSelected ? "text-[#f97316]" : "text-black"}">${item.name}</span>
       </div>
-      <div class="flex items-center gap-4 w-2/5 justify-end">
+      <div class="flex items-center gap-2 w-full sm:w-2/5 justify-end">
         <button data-id="${item.id}" class="decrease-qty text-2xl font-bold px-3 py-1 rounded bg-gray-300 hover:bg-gray-400 transition">−</button>
-        <input type="text" readonly value="${item.qty}" class="w-14 text-center border border-gray-300 rounded px-3 py-1 bg-white text-lg" />
+        <input type="text" readonly value="${item.qty}" class="w-12 text-center border border-gray-300 rounded px-2 py-1 bg-white text-lg" />
         <button data-id="${item.id}" class="increase-qty text-2xl font-bold px-3 py-1 rounded bg-gray-300 hover:bg-gray-400 transition">+</button>
       </div>
     `;
@@ -154,7 +154,7 @@ document.getElementById("take-me-back").addEventListener("click", () => {
 });
 
 // Quantity change buttons inside cart modal
-document.getElementById("cart-items").addEventListener("click", e => {
+document.getElementById("cart-items").addEventListener("click", (e) => {
   if (e.target.classList.contains("increase-qty")) {
     const id = parseInt(e.target.getAttribute("data-id"));
     changeQty(id, 1);
@@ -167,21 +167,21 @@ document.getElementById("cart-items").addEventListener("click", e => {
 
 // Change cart item quantity and update or remove
 function changeQty(id, delta) {
-  const item = cart.find(i => i.id === id);
+  const item = cart.find((i) => i.id === id);
   if (!item) return;
 
   item.qty += delta;
   if (item.qty < 1) {
-    cart = cart.filter(i => i.id !== id);
+    cart = cart.filter((i) => i.id !== id);
   }
   updateCartUI();
 }
 
 // Card rotation logic (if you keep it, otherwise remove)
-document.addEventListener('DOMContentLoaded', function() {
-  const container = document.getElementById('cardsContainer');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("cardsContainer");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
   if (!container || !prevBtn || !nextBtn) return;
 
@@ -207,11 +207,11 @@ document.addEventListener('DOMContentLoaded', function() {
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
-    cards.forEach(card => container.appendChild(card));
+    cards.forEach((card) => container.appendChild(card));
   }
 
-  nextBtn.addEventListener('click', rotateNext);
-  prevBtn.addEventListener('click', rotatePrev);
+  nextBtn.addEventListener("click", rotateNext);
+  prevBtn.addEventListener("click", rotatePrev);
 
   // Optional auto-rotate
   // setInterval(rotateNext, 5000);

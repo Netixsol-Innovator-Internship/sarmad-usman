@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tip Calculator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Space Mono', monospace;
+      }
+
+      /* Toast animation */
+      .toast {
+        animation: slideUpFade 0.5s ease-out forwards;
+      }
+      @keyframes slideUpFade {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Active tip button default */
+      .active-tip {
+        background-color: #26c2ae !important;
+        color: #00474b !important;
+        transform: scale(1.05);
+      }
+
+      /* Dark mode styles */
+      body.dark {
+        background-color: #121B22;
+        color: #C5E4E7;
+      }
+
+      body.dark main {
+        background-color: #1F292D;
+        box-shadow:
+          0 0 15px 3px rgba(38, 194, 174, 0.7),
+          0 0 30px 6px rgba(38, 194, 174, 0.4);
+        transition: box-shadow 1.5s ease-in-out infinite alternate;
+      }
+
+      /* Logo invert on dark mode for visibility */
+      body.dark header img {
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+      }
+
+      /* Active tip button in dark mode */
+      body.dark .active-tip {
+        background-color: #26c2ae !important;
+        color: #00474b !important;
+        transform: scale(1.05);
+      }
+
+      /* Reset button background in dark mode */
+      body.dark .reset-btn {
+        background-color: #26c2ae !important;
+        color: #00474b !important;
+        transition: background-color 0.3s ease;
+      }
+      body.dark .reset-btn:hover {
+        background-color: #1fa99a !important;
+      }
+
+      /* Reset button background in light mode */
+      .reset-btn {
+        background-color: #0d686d;
+        color: #00474b;
+        transition: background-color 0.3s ease;
+      }
+      .reset-btn:hover {
+        background-color: #26c2ae;
+      }
+
+      /* Dark mode shadow blink animation */
+      @keyframes shadowBlink {
+        0%, 100% {
+          box-shadow:
+            0 0 20px 4px rgba(38, 194, 174, 0.7),
+            0 0 40px 8px rgba(38, 194, 174, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 0 40px 8px rgba(38, 194, 174, 1),
+            0 0 60px 12px rgba(38, 194, 174, 0.6);
+        }
+      }
+
+      body.dark main {
+        animation: shadowBlink 3s ease-in-out infinite;
+      }
+
+      /* Theme toggle button */
+      #theme-toggle {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        background-color: #26c2ae;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 0 10px rgba(38, 194, 174, 0.7);
+        z-index: 100;
+      }
+      #theme-toggle:hover {
+        background-color: #1fa99a;
+      }
+      #theme-toggle svg {
+        width: 24px;
+        height: 24px;
+        fill: #00474b;
+      }
+    </style>
+  </head>
+  <body class="bg-[#C5E4E7] min-h-screen flex flex-col relative transition-colors duration-500">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-6 right-6 z-50 space-y-2"></div>
+
+    <!-- Theme toggle button on left -->
+    <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light theme">
+      <!-- Sun icon (default light mode) -->
+      <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M12 4.354a1 1 0 0 1 1 1V7a1 1 0 1 1-2 0V5.354a1 1 0 0 1 1-1zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2a1 1 0 0 1 1 1v1.646a1 1 0 1 1-2 0V20a1 1 0 0 1 1-1zM18.364 6.364a1 1 0 1 1 1.414 1.414l-1.152 1.152a1 1 0 1 1-1.414-1.414l1.152-1.152zm-12.728 0 1.152 1.152a1 1 0 1 1-1.414 1.414L4.222 7.778a1 1 0 1 1 1.414-1.414zm12.728 11.272-1.152-1.152a1 1 0 1 1 1.414-1.414l1.152 1.152a1 1 0 1 1-1.414 1.414zm-12.728 0a1 1 0 1 1-1.414-1.414l1.152-1.152a1 1 0 1 1 1.414 1.414l-1.152 1.152zM20 12a1 1 0 0 1-1 1h-1.646a1 1 0 1 1 0-2H19a1 1 0 0 1 1 1zM7 12a1 1 0 0 1-1 1H4.354a1 1 0 1 1 0-2H6a1 1 0 0 1 1 1z"
+        />
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="w-full flex justify-center py-12">
+      <img src="./images/logo.svg" alt="Logo" class="w-16 md:w-20 transition-filter duration-300" />
+    </header>
+
+    <!-- Main Container -->
+    <main
+      class="bg-white rounded-3xl grid md:grid-cols-2 gap-8 max-w-5xl w-full p-10 md:p-16 shadow-lg mx-auto -mt-8 transition-all duration-500"
+    >
+      <!-- Left Section -->
+      <section class="flex flex-col space-y-6">
+        <!-- Bill Input -->
+        <div>
+          <label for="bill" class="block text-[#5E7A7D] text-lg font-semibold mb-1">
+            Bill
+          </label>
+          <div class="relative">
+            <img src="./images/icon-dollar.svg" class="absolute left-4 top-1/2 -translate-y-1/2 w-5" />
+            <input
+              id="bill"
+              type="number"
+              placeholder="0"
+              class="w-full pl-12 pr-4 py-3 rounded-md bg-[#F3F9FA] text-[#00474B] text-2xl text-right focus:outline-2 focus:outline-[#26C2AE] transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        <!-- Tip Selection -->
+        <div>
+          <p class="text-[#5E7A7D] text-lg font-semibold mb-4">Select Tip %</p>
+          <div class="grid grid-cols-3 gap-4">
+            <button type="button" class="tip-btn bg-[#00474B] text-white text-2xl font-bold py-3 rounded-md transition">5%</button>
+            <button type="button" class="tip-btn bg-[#00474B] text-white text-2xl font-bold py-3 rounded-md transition">10%</button>
+            <button type="button" class="tip-btn bg-[#00474B] text-white text-2xl font-bold py-3 rounded-md transition">15%</button>
+            <button type="button" class="tip-btn bg-[#00474B] text-white text-2xl font-bold py-3 rounded-md transition">25%</button>
+            <button type="button" class="tip-btn bg-[#00474B] text-white text-2xl font-bold py-3 rounded-md transition">50%</button>
+            <input
+              type="number"
+              placeholder="Custom"
+              class="custom-input bg-[#F3F9FA] text-[#00474B] text-1xl font-semibold text-center rounded-md py-3 focus:outline-2 focus:outline-[#26C2AE]"
+            />
+          </div>
+        </div>
+
+        <!-- People Input -->
+        <div>
+          <label for="people" class="block text-[#5E7A7D] text-lg font-semibold mb-1">
+            Number of People
+          </label>
+          <div class="relative">
+            <img src="./images/icon-person.svg" class="absolute left-4 top-1/2 -translate-y-1/2 w-5" />
+            <input
+              id="people"
+              type="number"
+              placeholder="0"
+              class="w-full pl-12 pr-4 py-3 rounded-md bg-[#F3F9FA] text-[#00474B] text-2xl text-right focus:outline-2 focus:outline-[#26C2AE] transition-all"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Section -->
+      <section class="bg-[#00474B] rounded-2xl p-10 flex flex-col justify-between max-w-md mx-auto">
+        <div class="space-y-12">
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-white text-lg font-semibold">Tip Amount</p>
+              <span class="text-[#7F9D9F] text-sm">/ person</span>
+            </div>
+            <h2 class="text-[#26C2AE] text-6xl font-extrabold">$<span class="tip-amount-el">0.00</span></h2>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-white text-lg font-semibold">Total</p>
+              <span class="text-[#7F9D9F] text-sm">/ person</span>
+            </div>
+            <h2 class="text-[#26C2AE] text-6xl font-extrabold">$<span class="total-amount-el">0.00</span></h2>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="reset-btn mt-12 bg-[#0D686D] hover:bg-[#26C2AE] text-[#00474B] font-bold text-2xl py-4 rounded-md transition"
+        >
+          RESET
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

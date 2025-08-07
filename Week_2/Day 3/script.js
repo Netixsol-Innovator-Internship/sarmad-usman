@@ -29,17 +29,21 @@ function renderProducts(products, containerId) {
 
   products.forEach(product => {
     const card = document.createElement("div");
-    card.className = "bg-white rounded-xl border border-gray-100 flex justify-between items-center p-5";
-    card.style.boxShadow = "0 0 8px 0 rgba(0, 0, 0, 0.12)";
+    card.className = `
+      bg-white rounded-xl border border-gray-100 
+      flex flex-col md:flex-row justify-between items-center p-5 
+      mb-4 shadow-md
+    `;
+
     card.innerHTML = `
-      <div class="w-3/5 flex flex-col justify-start">
+      <div class="w-full md:w-3/5 flex flex-col justify-start mb-4 md:mb-0">
         <h3 class="font-semibold text-black text-base leading-tight mb-1">${product.name}</h3>
         <p class="text-gray-800 text-xs leading-snug mb-3" style="line-height: 1.3;">${product.items.join(", ")}</p>
         <span class="font-bold text-black text-sm">GBP ${product.price.toFixed(2)}</span>
       </div>
-      <div class="relative w-2/5 h-[130px] rounded-xl overflow-hidden flex items-center justify-center">
+      <div class="relative w-full md:w-2/5 h-[130px] rounded-xl overflow-hidden flex items-center justify-center">
         <img src="${product.image}" alt="${product.name}" class="object-cover w-[160px] h-[110px] rounded-lg shadow-md" />
-        <div class="absolute top-[5rem] left-[5rem] w-16 h-[4rem] bg-white rounded-xl border border-white border-2xl flex items-center justify-center">
+        <div class="absolute bottom-2 md:top-[5rem] md:left-[5rem] left-1/2 transform -translate-x-1/2 md:transform-none w-12 h-12 md:w-16 md:h-[4rem] bg-white rounded-xl border border-white flex items-center justify-center">
           <button data-id="${product.id}" class="add-to-cart bg-[#0A1334] w-6 h-6 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -214,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
 // Static list of restaurant cards
 const restaurants = [
   {
@@ -272,3 +277,50 @@ restaurants.forEach((restaurant) => {
 
   container.appendChild(card); // Append to DOM
 });
+
+// .......................Customer Reviews...............
+    (() => {
+      const container = document.getElementById('cardsContainer');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      // Only enable slider on mobile (under md breakpoint)
+      function isMobile() {
+        return window.innerWidth < 768;
+      }
+
+      // Scroll amount per click = container width (show one card fully)
+      function scrollAmount() {
+        return container.offsetWidth;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (isMobile()) {
+          container.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (isMobile()) {
+          container.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        }
+      });
+
+      // Optional: Disable buttons when at start/end of scroll on mobile
+      function updateButtons() {
+        if (!isMobile()) {
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+          return;
+        }
+        const scrollLeft = container.scrollLeft;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        prevBtn.disabled = scrollLeft <= 0;
+        nextBtn.disabled = scrollLeft >= maxScrollLeft - 1; // small fudge factor
+      }
+
+      container.addEventListener('scroll', updateButtons);
+      window.addEventListener('resize', updateButtons);
+      updateButtons();
+    })();
+  

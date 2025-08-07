@@ -1,5 +1,5 @@
 # Tip Calculator
-live demo: 
+live demo: https://sarmad-tipcalculator.vercel.app/
 
 A modern, responsive Tip Calculator web app built with HTML, Tailwind CSS, and JavaScript. It allows users to quickly calculate tip amounts and totals per person, featuring custom tip input, validation, reset functionality, and a smooth dark/light theme toggle.
 

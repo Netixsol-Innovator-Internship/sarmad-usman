@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuizMaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    nav ul li a {
+      line-height: 21px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7fafc;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .edit-mode input,
+    .edit-mode textarea {
+      border: 1px solid #e2e8f0;
+      padding: 8px;
+      border-radius: 6px;
+      width: 100%;
+    }
+    .edit-mode .display-text {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="w-full border-b border-[#E5E8EB]">
+    <div class="mx-auto flex items-center justify-between h-[65px] max-w-[1280px] px-4 sm:px-6 lg:px-10">
+      
+      <!-- Logo -->
+      <a href="#home" class="flex items-center select-none gap-4 group" style="height: 23px;">
+        <img src="../assets/logo.png" alt="QuizMaster Logo"
+          class="w-[23px] h-[23px] object-contain" draggable="false" />
+        <span class="font-semibold text-black text-lg leading-none cursor-pointer transition-colors duration-200 group-hover:text-gray-700"
+          style="font-family: 'Manrope', sans-serif;">QuizMaster</span>
+      </a>
+
+      <!-- Desktop Nav + Bell + Profile -->
+      <div class="hidden sm:flex items-center gap-6 sm:gap-8 lg:gap-9">
+        <!-- Nav -->
+        <nav>
+          <ul class="flex text-black gap-8">
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+            <li><a href="../html/quizmaster.html" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+            <li><a href="./html/profile.html" class="hover:text-emerald-600 transition-colors duration-200">Profile</a></li>
+          </ul>
+        </nav>
+
+        <!-- Bell Icon -->
+        <button aria-label="Notifications"
+          class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+          </svg>
+        </button>
+
+        <!-- Profile -->
+        <a href="#profile" class="block">
+          <img
+            src="../assets/profileimage.png"
+            alt="Profile Picture"
+            class="w-10 h-10 rounded-full object-cover select-none transition ring-0 hover:ring-2 hover:ring-emerald-400"
+            draggable="false" />
+        </a>
+      </div>
+
+      <!-- Mobile: Hamburger -->
+      <div class="sm:hidden">
+        <button id="menu-toggle" class="text-gray-700 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+      <nav class="mt-3">
+        <ul class="flex flex-col gap-3 text-black">
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+          
+          <!-- Last nav row with Profile text only, no profile image -->
+          <li>
+            <div class="flex justify-between items-center">
+              <a href="#" class="hover:text-emerald-600 transition-colors duration-200">Profile</a>
+              <div class="flex items-center gap-5">
+                <!-- Bell -->
+                <button aria-label="Notifications"
+                  class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="bg-gray-100 min-h-screen p-4 sm:p-8">
+    <div class="bg-white max-w-4xl mx-auto rounded-xl shadow-lg p-6 sm:p-10">
+      <!-- Profile Header Section -->
+      <div class="flex flex-col items-center text-center pb-8 border-b border-gray-200">
+        <!-- Profile Image -->
+        <div class="relative w-28 h-28 mb-4">
+          <img
+            id="profile-image-display"
+            class="w-full h-full rounded-full shadow-md object-cover"
+            src="https://placehold.co/112x112/F5E6E6/3D1C1C?text=SP"
+            alt="User Profile"
+          />
+          <!-- Edit button for profile image -->
+          <button
+            id="edit-image-btn"
+            class="absolute bottom-0 right-0 p-1 bg-gray-200 rounded-full text-gray-600 hover:bg-gray-300 transition duration-150 ease-in-out hidden"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zm-3.536 2.122L1.828 12.586V14h1.414l8.22-8.22-1.414-1.414z"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- Profile Details -->
+        <div class="flex flex-col items-center">
+          <h1 id="profile-name-display" class="text-2xl font-semibold text-gray-800 display-text">Sophia Bennett</h1>
+          <input id="profile-name-input" type="text" class="text-2xl font-semibold text-gray-800 text-center hidden" />
+        </div>
+        <p id="profile-title-display" class="text-gray-500 text-sm mt-1 display-text">Quiz Enthusiast</p>
+        <input id="profile-title-input" type="text" class="text-gray-500 text-sm mt-1 text-center hidden" />
+        <p class="text-gray-400 text-xs mt-1">Joined 2021</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-200 mt-6 -mb-px text-gray-500">
+        <button
+          id="activity-tab"
+          class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out"
+        >
+          Activity
+        </button>
+        <button
+          id="profile-tab"
+          class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-indigo-500 text-indigo-600 transition duration-150 ease-in-out"
+        >
+          Profile
+        </button>
+        <!-- Edit Profile -->
+        <div class="ml-auto">
+          <button
+            id="edit-profile-btn"
+            class="py-2 px-4 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-150 ease-in-out"
+          >
+            Edit Profile
+          </button>
+          <div id="edit-actions" class="hidden space-x-2">
+            <button
+              id="save-profile-btn"
+              class="py-2 px-4 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition duration-150 ease-in-out"
+            >
+              Save
+            </button>
+            <button
+              id="cancel-edit-btn"
+              class="py-2 px-4 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition duration-150 ease-in-out"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Content -->
+      <div id="activity-content" class="tab-content mt-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Activity Feed</h2>
+        <div class="bg-gray-50 p-6 rounded-lg text-gray-600">
+          <p>This is the activity feed content. You haven't had any recent activity.</p>
+        </div>
+      </div>
+
+      <!-- Profile Content -->
+      <div id="profile-content" class="tab-content active mt-8">
+        <!-- Personal Info -->
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h2>
+          <div class="bg-gray-50 rounded-lg p-6 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-12">
+              <div>
+                <p class="text-xs text-gray-400 mb-1">Name</p>
+                <p id="personal-name-display" class="text-sm text-gray-600 font-medium display-text">Sophia Bennett</p>
+                <input id="personal-name-input" type="text" class="text-sm font-medium text-gray-600 hidden" />
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-1">Email</p>
+                <p id="personal-email-display" class="text-sm text-gray-600 font-medium display-text">sophia.bennett@email.com</p>
+                <input id="personal-email-input" type="email" class="text-sm font-medium text-gray-600 hidden" />
+              </div>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 mb-1">Bio</p>
+              <p id="personal-bio-display" class="text-sm text-gray-600 display-text">Avid quiz taker and trivia lover. Always up for a challenge!</p>
+              <textarea id="personal-bio-input" class="text-sm text-gray-600 hidden"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz History -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Quiz History</h2>
+          <div class="overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                </tr>
+              </thead>
+              <tbody id="quiz-history-body" class="bg-white divide-y divide-gray-200">
+                <!-- Quiz history will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize default data if not exists
+      if (!localStorage.getItem('userProfile')) {
+        const defaultProfile = {
+          name: 'Sophia Bennett',
+          title: 'Quiz Enthusiast',
+          email: 'sophia.bennett@email.com',
+          bio: 'Avid quiz taker and trivia lover. Always up for a challenge!',
+          imageUrl: 'https://placehold.co/112x112/F5E6E6/3D1C1C?text=SP',
+          joinDate: '2021',
+          quizHistory: [
+            { quizName: 'General Knowledge', score: '85/100', date: '2023-08-15' },
+            { quizName: 'Science Trivia', score: '70/100', date: '2023-08-10' },
+            { quizName: 'History Buff', score: '92/100', date: '2023-08-05' }
+          ]
+        };
+        localStorage.setItem('userProfile', JSON.stringify(defaultProfile));
+      }
+
+      // Tab switching functionality
+      const tabs = document.querySelectorAll('.tab-button');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('border-indigo-500', 'text-indigo-600');
+            t.classList.add('border-transparent', 'hover:text-gray-700', 'hover:border-gray-300');
+          });
+          contents.forEach(c => c.classList.remove('active'));
+          tab.classList.add('border-indigo-500', 'text-indigo-600');
+          tab.classList.remove('border-transparent', 'hover:text-gray-700', 'hover:border-gray-300');
+          const contentId = tab.id.replace('-tab', '-content');
+          document.getElementById(contentId).classList.add('active');
+        });
+      });
+
+      // Profile editing functionality
+      const editBtn = document.getElementById('edit-profile-btn');
+      const saveBtn = document.getElementById('save-profile-btn');
+      const cancelBtn = document.getElementById('cancel-edit-btn');
+      const editActions = document.getElementById('edit-actions');
+      const editImageBtn = document.getElementById('edit-image-btn');
+
+      const profileNameDisplay = document.getElementById('profile-name-display');
+      const profileNameInput = document.getElementById('profile-name-input');
+      const profileTitleDisplay = document.getElementById('profile-title-display');
+      const profileTitleInput = document.getElementById('profile-title-input');
+      const personalNameDisplay = document.getElementById('personal-name-display');
+      const personalNameInput = document.getElementById('personal-name-input');
+      const personalEmailDisplay = document.getElementById('personal-email-display');
+      const personalEmailInput = document.getElementById('personal-email-input');
+      const personalBioDisplay = document.getElementById('personal-bio-display');
+      const personalBioInput = document.getElementById('personal-bio-input');
+      const profileImageDisplay = document.getElementById('profile-image-display');
+      const quizHistoryBody = document.getElementById('quiz-history-body');
+
+      // Load profile data from localStorage
+      const loadProfileData = () => {
+        const userProfileData = JSON.parse(localStorage.getItem('userProfile'));
+        
+        // Update profile information
+        profileNameDisplay.textContent = userProfileData.name;
+        profileNameInput.value = userProfileData.name;
+        profileTitleDisplay.textContent = userProfileData.title;
+        profileTitleInput.value = userProfileData.title;
+        personalNameDisplay.textContent = userProfileData.name;
+        personalNameInput.value = userProfileData.name;
+        personalEmailDisplay.textContent = userProfileData.email;
+        personalEmailInput.value = userProfileData.email;
+        personalBioDisplay.textContent = userProfileData.bio;
+        personalBioInput.value = userProfileData.bio;
+        profileImageDisplay.src = userProfileData.imageUrl;
+        
+        // Update join date
+        const joinDateElement = document.querySelector('.text-gray-400.text-xs.mt-1');
+        if (joinDateElement) {
+          joinDateElement.textContent = `Joined ${userProfileData.joinDate}`;
+        }
+        
+        // Update quiz history
+        quizHistoryBody.innerHTML = '';
+        if (userProfileData.quizHistory && userProfileData.quizHistory.length > 0) {
+          userProfileData.quizHistory.forEach(quiz => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${quiz.quizName}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${quiz.score}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${quiz.date}</td>
+            `;
+            quizHistoryBody.appendChild(row);
+          });
+        } else {
+          quizHistoryBody.innerHTML = `
+            <tr>
+              <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                No quiz history available
+              </td>
+            </tr>
+          `;
+        }
+      };
+
+      // Toggle edit mode
+      const toggleEditMode = (isEditing) => {
+        document.body.classList.toggle('edit-mode', isEditing);
+        editBtn.classList.toggle('hidden', isEditing);
+        editActions.classList.toggle('hidden', !isEditing);
+        editImageBtn.classList.toggle('hidden', !isEditing);
+
+        const inputs = document.querySelectorAll('input, textarea');
+        const displays = document.querySelectorAll('.display-text');
+        inputs.forEach(input => input.classList.toggle('hidden', !isEditing));
+        displays.forEach(display => display.classList.toggle('hidden', isEditing));
+      };
+
+      // Initialize the page
+      loadProfileData();
+      toggleEditMode(false);
+
+      // Event listeners
+      editBtn.addEventListener('click', () => toggleEditMode(true));
+
+      saveBtn.addEventListener('click', () => {
+        const userProfileData = JSON.parse(localStorage.getItem('userProfile'));
+        
+        // Update profile data
+        userProfileData.name = profileNameInput.value;
+        userProfileData.title = profileTitleInput.value;
+        userProfileData.email = personalEmailInput.value;
+        userProfileData.bio = personalBioInput.value;
+        
+        // Save to localStorage
+        localStorage.setItem('userProfile', JSON.stringify(userProfileData));
+        
+        // Reload the profile data
+        loadProfileData();
+        toggleEditMode(false);
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        loadProfileData();
+        toggleEditMode(false);
+      });
+
+      editImageBtn.addEventListener('click', () => {
+        const newImageUrl = prompt("Enter a new image URL:");
+        if (newImageUrl) {
+          const userProfileData = JSON.parse(localStorage.getItem('userProfile'));
+          userProfileData.imageUrl = newImageUrl;
+          localStorage.setItem('userProfile', JSON.stringify(userProfileData));
+          profileImageDisplay.src = newImageUrl;
+        }
+      });
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

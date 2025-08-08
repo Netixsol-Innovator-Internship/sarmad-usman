@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuizMaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    nav ul li a {
+      line-height: 21px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="w-full border-b border-[#E5E8EB]">
+    <div class="mx-auto flex items-center justify-between h-[65px] max-w-[1280px] px-4 sm:px-6 lg:px-10">
+      
+      <!-- Logo -->
+      <a href="#home" class="flex items-center select-none gap-4 group" style="height: 23px;">
+        <img src="../assets/logo.png" alt="QuizMaster Logo"
+          class="w-[23px] h-[23px] object-contain" draggable="false" />
+        <span class="font-semibold text-black text-lg leading-none cursor-pointer transition-colors duration-200 group-hover:text-gray-700"
+          style="font-family: 'Manrope', sans-serif;">QuizMaster</span>
+      </a>
+
+      <!-- Desktop Nav + Bell + Profile -->
+      <div class="hidden sm:flex items-center gap-6 sm:gap-8 lg:gap-9">
+        <!-- Nav -->
+        <nav>
+          <ul class="flex text-black gap-8">
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Profile</a></li>
+          </ul>
+        </nav>
+
+        <!-- Bell Icon -->
+        <button aria-label="Notifications"
+          class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+          </svg>
+        </button>
+
+        <!-- Profile -->
+        <a href="#profile" class="block">
+          <img
+            src="../assets/profileimage.png"
+            alt="Profile Picture"
+            class="w-10 h-10 rounded-full object-cover select-none transition ring-0 hover:ring-2 hover:ring-emerald-400"
+            draggable="false" />
+        </a>
+      </div>
+
+      <!-- Mobile: Hamburger -->
+      <div class="sm:hidden">
+        <button id="menu-toggle" class="text-gray-700 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+      <nav class="mt-3">
+        <ul class="flex flex-col gap-3 text-black">
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+          
+          <!-- Last nav row with Profile text only, no profile image -->
+          <li>
+            <div class="flex justify-between items-center">
+              <a href="#" class="hover:text-emerald-600 transition-colors duration-200">Profile</a>
+              <div class="flex items-center gap-5">
+                <!-- Bell -->
+                <button aria-label="Notifications"
+                  class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+                  </svg>
+                </button>
+
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<!-- Script to toggle mobile menu -->
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+
+<!-- ...................................Navbar End..................................................... -->
+
+<section class="w-full min-h-screen px-4 py-12 font-manrope bg-white">
+  <!-- Title -->
+  <h2 class="text-[28px] leading-[35px] font-semibold text-[#121417] text-center mb-10">
+    Create your account
+  </h2>
+
+  <!-- Form container -->
+  <div class="max-w-[480px] mx-auto md:ml-24 lg:ml-40 xl:ml-64 relative">
+    <form class="flex flex-col gap-5">
+      <input
+        type="text"
+        placeholder="Full Name"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A] 
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+      />
+
+      <input
+        type="email"
+        placeholder="Email"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A] 
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A] 
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+      />
+
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A] 
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+      />
+
+     <a
+  href="" 
+  class="w-full h-12 bg-[#0D78F2] text-white text-[14px] font-bold leading-[21px] rounded-lg px-4 flex items-center justify-center transition duration-300 hover:bg-[#0b6bd9] active:scale-[0.98] cursor-pointer">
+  Sign Up
+</a>
+
+    </form>
+
+    <div
+      class="mt-4 text-center text-[14px] text-[#61738A] md:absolute md:left-[85%] md:-bottom-8 md:transform md:-translate-x-1/4 md:whitespace-nowrap"
+    >
+      Already have an account?
+      <span
+  class="font-semibold cursor-pointer hover:underline hover:text-[#0D78F2] inline-block transition-transform duration-300 ease-in-out hover:scale-110"
+  onclick="window.location.href='signin.html'"
+  role="link"
+  tabindex="0"
+  onkeypress="if(event.key === 'Enter'){ window.location.href='signin.html'; }"
+>
+  Sign In
+</span>
+
+    </div>
+  </div>
+</section>
+<script src="../js/signup.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuizMaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    nav ul li a {
+      line-height: 21px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="w-full border-b border-[#E5E8EB]">
+    <div class="mx-auto flex items-center justify-between h-[65px] max-w-[1280px] px-4 sm:px-6 lg:px-10">
+      
+      <!-- Logo -->
+      <a href="#home" class="flex items-center select-none gap-4 group" style="height: 23px;">
+        <img src="../assets/logo.png" alt="QuizMaster Logo"
+          class="w-[23px] h-[23px] object-contain" draggable="false" />
+        <span class="font-semibold text-black text-lg leading-none cursor-pointer transition-colors duration-200 group-hover:text-gray-700"
+          style="font-family: 'Manrope', sans-serif;">QuizMaster</span>
+      </a>
+
+      <!-- Desktop Nav + Bell + Profile -->
+      <div class="hidden sm:flex items-center gap-6 sm:gap-8 lg:gap-9">
+        <!-- Nav -->
+        <nav>
+          <ul class="flex text-black gap-8">
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+            <li><a href="./quizmaster.html" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+            <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+            <li><a href="profile.html" class="hover:text-emerald-600 transition-colors duration-200">Profile</a></li>
+          </ul>
+        </nav>
+
+        <!-- Bell Icon -->
+        <button aria-label="Notifications"
+          class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+          </svg>
+        </button>
+
+        <!-- Profile -->
+        <a href="./profile.html" class="block">
+          <img
+            src="../assets/profileimage.png"
+            alt="Profile Picture"
+            class="w-10 h-10 rounded-full object-cover select-none transition ring-0 hover:ring-2 hover:ring-emerald-400"
+            draggable="false" />
+        </a>
+      </div>
+
+      <!-- Mobile: Hamburger -->
+      <div class="sm:hidden">
+        <button id="menu-toggle" class="text-gray-700 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+      <nav class="mt-3">
+        <ul class="flex flex-col gap-3 text-black">
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Home</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Quizzes</a></li>
+          <li><a href="#" class="hover:text-emerald-600 transition-colors duration-200">Leaderboard</a></li>
+          
+          <!-- Last nav row with Profile text only, no profile image -->
+          <li>
+            <div class="flex justify-between items-center">
+              <a href="#" class="hover:text-emerald-600 transition-colors duration-200">Profile</a>
+              <div class="flex items-center gap-5">
+                <!-- Bell -->
+                <button aria-label="Notifications"
+                  class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m7 0a3 3 0 11-6 0h6z" />
+                  </svg>
+                </button>
+
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<!-- Script to toggle mobile menu -->
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+
+<!-- ...................................Navbar End..................................................... -->
+
+<section class="bg-white text-[#121417] px-4 sm:px-8 md:px-16 lg:px-24 py-8 font-manrope max-w-[1200px] mx-auto">
+  <!-- Title -->
+  <h1 class="text-[32px] font-bold leading-[40px] mb-6 animate-fade-in">Select a Quiz</h1>
+
+  <!-- Filter Buttons -->
+  <div class="flex flex-wrap gap-2 mb-8" id="filter-buttons">
+    <button data-category="all" class="filter-btn px-4 py-2 rounded-lg bg-[#F0F2F5] text-[14px] font-medium transition-all duration-200 hover:bg-[#d9dde3] hover:scale-105">All</button>
+    <button data-category="Science" class="filter-btn px-4 py-2 rounded-lg bg-[#F0F2F5] text-[14px] font-medium transition-all duration-200 hover:bg-[#d9dde3] hover:scale-105">Science</button>
+    <button data-category="History" class="filter-btn px-4 py-2 rounded-lg bg-[#F0F2F5] text-[14px] font-medium transition-all duration-200 hover:bg-[#d9dde3] hover:scale-105">History</button>
+    <button data-category="Literature" class="filter-btn px-4 py-2 rounded-lg bg-[#F0F2F5] text-[14px] font-medium transition-all duration-200 hover:bg-[#d9dde3] hover:scale-105">Literature</button>
+    <button data-category="Mathematics" class="filter-btn px-4 py-2 rounded-lg bg-[#F0F2F5] text-[14px] font-medium transition-all duration-200 hover:bg-[#d9dde3] hover:scale-105">Mathematics</button>
+  </div>
+
+  <!-- Featured Quizzes -->
+  <h2 class="text-[22px] font-bold leading-[28px] mb-4 animate-fade-in">Featured Quizzes</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+    <!-- Quiz Card 1 -->
+    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 overflow-hidden cursor-pointer animate-fade-in">
+      <img src="../assets/m1.png" alt="The Universe" class="w-full h-[160px] object-cover rounded-t-2xl" />
+      <div class="p-6">
+        <h3 class="text-[18px] font-semibold leading-[26px] mb-2 text-[#121417]">The Universe</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Test your knowledge about the cosmos.</p>
+      </div>
+    </div>
+
+    <!-- Quiz Card 2 -->
+    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 overflow-hidden cursor-pointer animate-fade-in">
+      <img src="../assets/m2.png" alt="Ancient Civilizations" class="w-full h-[160px] object-cover rounded-t-2xl" />
+      <div class="p-6">
+        <h3 class="text-[18px] font-semibold leading-[26px] mb-2 text-[#121417]">Ancient Civilizations</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Explore the mysteries of ancient cultures.</p>
+      </div>
+    </div>
+
+    <!-- Quiz Card 3 -->
+    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 overflow-hidden cursor-pointer animate-fade-in">
+      <img src="../assets/m3.png" alt="Shakespearean Plays" class="w-full h-[160px] object-cover rounded-t-2xl" />
+      <div class="p-6">
+        <h3 class="text-[18px] font-semibold leading-[26px] mb-2 text-[#121417]">Shakespearean Plays</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Dive into the world of the Bard.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Quizzes -->
+  <h2 class="text-[22px] font-bold leading-[28px] mb-8 animate-fade-in">All Quizzes</h2>
+  <div class="space-y-12" id="quiz-list">
+    <!-- General Knowledge -->
+    <div data-category="General Knowledge" class="quiz-card flex flex-col md:flex-row items-center justify-between gap-8 bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in p-6">
+      <div class="flex-1 max-w-full md:max-w-[480px]">
+        <h3 class="text-[20px] font-semibold leading-[28px] mb-2 text-[#121417]">General Knowledge</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Test your overall knowledge with a mix of questions.</p>
+      </div>
+      <img src="../assets/m4.png" alt="General Knowledge" class="w-full md:w-[320px] h-auto max-h-[160px] rounded-2xl object-cover" />
+    </div>
+
+    <!-- Science -->
+    <div data-category="Science" class="quiz-card flex flex-col md:flex-row items-center justify-between gap-8 bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in p-6">
+      <div class="flex-1 max-w-full md:max-w-[480px]">
+        <h3 class="text-[20px] font-semibold leading-[28px] mb-2 text-[#121417]">Science</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Explore the wonders of science from biology to physics.</p>
+      </div>
+      <img src="../assets/m5.png" alt="Science" class="w-full md:w-[320px] h-auto max-h-[160px] rounded-2xl object-cover" />
+    </div>
+
+    <!-- History -->
+    <div data-category="History" class="quiz-card flex flex-col md:flex-row items-center justify-between gap-8 bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in p-6">
+      <div class="flex-1 max-w-full md:max-w-[480px]">
+        <h3 class="text-[20px] font-semibold leading-[28px] mb-2 text-[#121417]">History</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Journey through time and learn about historical events.</p>
+      </div>
+      <img src="../assets/m6.png" alt="History" class="w-full md:w-[320px] h-auto max-h-[160px] rounded-2xl object-cover" />
+    </div>
+
+    <!-- Literature -->
+    <div data-category="Literature" class="quiz-card flex flex-col md:flex-row items-center justify-between gap-8 bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in p-6">
+      <div class="flex-1 max-w-full md:max-w-[480px]">
+        <h3 class="text-[20px] font-semibold leading-[28px] mb-2 text-[#121417]">Literature</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Discover the world of books and authors.</p>
+      </div>
+      <img src="../assets/m7.png" alt="Literature" class="w-full md:w-[320px] h-auto max-h-[160px] rounded-2xl object-cover" />
+    </div>
+
+    <!-- Mathematics -->
+    <div data-category="Mathematics" class="quiz-card flex flex-col md:flex-row items-center justify-between gap-8 bg-white rounded-2xl shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in p-6">
+      <div class="flex-1 max-w-full md:max-w-[480px]">
+        <h3 class="text-[20px] font-semibold leading-[28px] mb-2 text-[#121417]">Mathematics</h3>
+        <p class="text-[16px] font-normal leading-[24px] text-[#61738A]">Challenge your math skills with various problems.</p>
+      </div>
+      <img src="../assets/m8.png" alt="Mathematics" class="w-full md:w-[320px] h-auto max-h-[160px] rounded-2xl object-cover" />
+    </div>
+  </div>
+</section>
+
+<!-- Your main script -->
+<script src="../js/quizmaster.js"></script>
+
+</body>
+</html>

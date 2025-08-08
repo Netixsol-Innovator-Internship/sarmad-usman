@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuizMaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    nav ul li a {
+      line-height: 21px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="w-full border-b border-[#E5E8EB]">
+  <div class="mx-auto max-w-[1280px] flex items-center justify-between h-[65px] px-4 sm:px-6 lg:px-10">
+    
+    <!-- Logo Text -->
+    <a href="#" class="font-semibold text-black text-lg leading-none cursor-pointer transition-colors duration-200 hover:text-gray-700" style="font-family: 'Manrope', sans-serif;" aria-label="QuizApp Home" draggable="false">
+      QuizApp
+    </a>
+    
+  </div>
+</header>
+
+
+
+<!-- ...................................Navbar End..................................................... -->
+
+<section class="w-full min-h-screen px-4 py-12 font-manrope bg-white">
+  <!-- Title -->
+  <h2 class="text-[28px] leading-[35px] font-semibold text-[#121417] text-center mb-10">
+    Welcome back
+  </h2>
+
+  <!-- Form container -->
+  <div class="max-w-[480px] mx-auto md:ml-24 lg:ml-40 xl:ml-64 relative">
+    <form class="flex flex-col gap-5">
+      <input
+        type="email"
+        placeholder="Email"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A]
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        class="w-full h-14 px-4 border border-[#E5E7EB] rounded-md text-[#61738A] text-[16px] leading-[24px] placeholder-[#61738A]
+          transition duration-300 ease-in-out
+          focus:outline-none focus:ring-2 focus:ring-[#0D78F2] focus:border-[#0D78F2]
+          focus:shadow-lg focus:scale-105"
+        required
+      />
+
+      <!-- Forgot Password with link and hover animation -->
+      <a
+        href="#"
+        class="text-[#61738A] text-[14px] font-normal font-manrope leading-[21px] block w-full h-[21px] opacity-100 cursor-pointer
+               transition-transform duration-300 ease-in-out hover:text-[#0D78F2] hover:underline hover:scale-105"
+      >
+        Forgot password?
+      </a>
+
+      <!-- Submit button instead of link -->
+      <button
+        type="submit"
+        class="w-full h-12 bg-[#0D78F2] text-white text-[14px] font-bold leading-[21px] rounded-lg px-4 flex items-center justify-center transition duration-300 hover:bg-[#0b6bd9] active:scale-[0.98] cursor-pointer"
+      >
+        Log in
+      </button>
+    </form>
+
+    <div
+      class="mt-4 text-center text-[14px] text-[#61738A] md:absolute md:left-[85%] md:-bottom-8 md:transform md:-translate-x-1/4 md:whitespace-nowrap"
+    >
+      Don’t have an account?
+      <span
+        class="font-semibold cursor-pointer hover:underline hover:text-[#0D78F2] inline-block transition-transform duration-300 ease-in-out hover:scale-110"
+        onclick="window.location.href='signup.html'"
+        role="link"
+        tabindex="0"
+        onkeypress="if(event.key === 'Enter'){ window.location.href='signup.html'; }"
+      >
+        Sign up
+      </span>
+    </div>
+  </div>
+</section>
+
+<script src="../js/signin.js"></script>
+
+
+
+</body>
+</html>

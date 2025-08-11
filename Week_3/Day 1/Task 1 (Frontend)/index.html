@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azaiza Design Studio - Responsive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'Avenir Arabic';
+      src: url('https://fonts.cdnfonts.com/css/avenir-arabic') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    .font-avenir-arabic {
+      font-family: 'Avenir Arabic', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(83.21deg, #3B0066 -130.25%, #175FC4 -5.2%, #00E1E7 140.51%, #00F7E0 172.5%, #00FFDD 192.89%);
+    }
+
+    .nav-link,
+    .gradient-bg,
+    .logo {
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Default link styles */
+    .nav-link {
+      color: #828282;
+      font-weight: normal;
+      position: relative;
+      padding-bottom: 6px;
+    }
+
+    /* Hover effect for the links */
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: black !important;
+      font-weight: 500 !important;
+    }
+
+    /* Gradient underline for the link */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, #08BBDD 0%, #1668C7 100%);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Hover effect on the underline */
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    /* Tablet and Mobile specific styles */
+    @media (max-width: 1023px) {
+      /* Border line below header (mobile/tablet only) */
+      header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #F0F0F0;
+        opacity: 1;
+      }
+
+      /* Full width hover underline for mobile/tablet menu links */
+      #mobile-menu .nav-link::after {
+        width: 100%;
+        left: 0;
+        transform: scaleX(0);
+      }
+      
+      #mobile-menu .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* Full width Contact Us button */
+      #mobile-menu button {
+        width: 100%;
+      }
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+      header {
+        height: 54px !important;
+        padding: 10px 20px !important;
+        justify-content: space-between !important;
+        background: #FFFFFF !important;
+        position: relative;
+      }
+
+      .logo {
+        width: 98.17px !important;
+        height: 32.34px !important;
+      }
+
+      #hamburger-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: linear-gradient(263.6deg, #08BADD -106.23%, #1669C7 97.34%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #hamburger-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .gradient-bg:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 225, 231, 0.3);
+    }
+
+    .logo:hover {
+      transform: scale(1.03) rotate(-2deg);
+    }
+
+    header {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      width: 143px;
+      height: 52px;
+      background-color: transparent;
+      object-fit: contain;
+    }
+
+    /* Dropdown for Features and Services */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-width: 160px;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      padding: 8px 16px;
+      color: #828282;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+      color: #333;
+      transform: translateX(4px);
+    }
+
+    /* Mobile dropdown styles */
+    .mobile-dropdown-content {
+      display: none;
+      background-color: #f9f9f9;
+      padding-left: 20px;
+      margin-top: 8px;
+      border-radius: 4px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.3s ease;
+    }
+
+    .mobile-dropdown-content a {
+      display: block;
+      padding: 8px 0;
+      color: #828282;
+      transform: translateX(-10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-content {
+      display: block;
+      max-height: 500px; /* Adjust based on your content */
+      padding: 8px 20px;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-content a {
+      transform: translateX(0);
+      opacity: 1;
+      transition-delay: 0.1s;
+    }
+
+    /* Staggered animation for dropdown items */
+    .mobile-dropdown.active .mobile-dropdown-content a:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    .mobile-dropdown.active .mobile-dropdown-content a:nth-child(2) {
+      transition-delay: 0.15s;
+    }
+    .mobile-dropdown.active .mobile-dropdown-content a:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+    .mobile-dropdown.active .mobile-dropdown-content a:nth-child(4) {
+      transition-delay: 0.25s;
+    }
+    .mobile-dropdown.active .mobile-dropdown-content a:nth-child(5) {
+      transition-delay: 0.3s;
+    }
+
+    /* Rotate dropdown icon when active */
+    .mobile-dropdown.active .mobile-dropdown-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .mobile-dropdown-toggle svg {
+      transition: transform 0.3s ease;
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 767px) {
+      .dropdown-content {
+        width: 100%;
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white font-avenir-arabic">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between bg-white relative px-6 py-2 md:px-[60px] md:py-[10px] xl:px-[100px] xl:py-[10px] h-[72px] md:h-[100px]">
+    <!-- Logo -->
+    <div class="flex flex-col">
+      <img src="assets/Logo.png" alt="AZAIZA DESIGN STUDIO" class="logo cursor-pointer" />
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav id="nav-menu" class="hidden md:flex items-center space-x-8 text-[14px] font-medium text-[#828282] relative">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link hover:text-black">About Us</a>
+
+      <!-- Dropdown for Features -->
+      <div class="dropdown">
+        <a href="#" class="nav-link flex items-center hover:text-black">
+          Features
+          <svg class="w-4 h-4 ml-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="dropdown-content">
+          <a href="#">Responsive Design</a>
+          <a href="#">Interactive UI</a>
+          <a href="#">Performance Optimized</a>
+          <a href="#">Mobile-first Approach</a>
+        </div>
+      </div>
+
+      <!-- Dropdown for Our Services -->
+      <div class="dropdown">
+        <a href="#" class="nav-link flex items-center hover:text-black">
+          Our Services
+          <svg class="w-4 h-4 ml-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="dropdown-content">
+          <a href="#">Web Development</a>
+          <a href="#">UI/UX Design</a>
+          <a href="#">SEO Optimization</a>
+          <a href="#">Digital Marketing</a>
+          <a href="#">E-commerce Solutions</a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link hover:text-black">Why ADS?</a>
+    </nav>
+
+    <!-- Desktop Contact Button -->
+    <button class="hidden md:inline-block rounded-[8px] p-[12px_24px] text-[18px] font-medium text-white gradient-bg w-[152px] h-[52px]">
+      Contact us
+    </button>
+
+    <!-- Mobile Hamburger Button -->
+    <button id="hamburger-btn" class="md:hidden" aria-label="Toggle menu">
+      <!-- Hamburger Icon -->
+      <svg id="hamburger-icon" class="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
+        <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round" />
+        <line x1="6" y1="12" x2="18" y2="12" stroke-width="2" stroke-linecap="round" />
+        <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <!-- Close Icon -->
+      <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke="white">
+        <path stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden md:hidden bg-white px-6 py-4 text-[14px] font-medium text-[#828282] flex flex-col items-center space-y-4">
+    <a href="#" class="nav-link w-full text-center">Home</a>
+    <a href="#" class="nav-link hover:text-black w-full text-center">About Us</a>
+    
+    <!-- Mobile Features Dropdown -->
+    <div class="mobile-dropdown w-full">
+      <div class="nav-link hover:text-black flex items-center justify-center gap-1 w-full cursor-pointer mobile-dropdown-toggle">
+        Features
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="mobile-dropdown-content">
+        <a href="#">Responsive Design</a>
+        <a href="#">Interactive UI</a>
+        <a href="#">Performance Optimized</a>
+        <a href="#">Mobile-first Approach</a>
+      </div>
+    </div>
+    
+    <!-- Mobile Services Dropdown -->
+    <div class="mobile-dropdown w-full">
+      <div class="nav-link hover:text-black flex items-center justify-center gap-1 w-full cursor-pointer mobile-dropdown-toggle">
+        Our Services
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="mobile-dropdown-content">
+        <a href="#">Web Development</a>
+        <a href="#">UI/UX Design</a>
+        <a href="#">SEO Optimization</a>
+        <a href="#">Digital Marketing</a>
+        <a href="#">E-commerce Solutions</a>
+      </div>
+    </div>
+    
+    <a href="#" class="nav-link hover:text-black w-full text-center">Why ADS?</a>
+    
+    <button class="mt-4 rounded-[8px] p-[12px_24px] text-[18px] font-medium text-white gradient-bg w-full">
+      Contact Us
+    </button>
+  </nav>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      
+      // Mobile dropdown toggles
+      const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+      // Ensure hamburger icon shows and close icon hides initially
+      hamburgerIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+
+      // Toggle Mobile Menu with animation
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpening = mobileMenu.classList.contains('hidden');
+        
+        if (isOpening) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenu.style.opacity = '0';
+          mobileMenu.style.transform = 'translateY(-10px)';
+          
+          // Animate in
+          setTimeout(() => {
+            mobileMenu.style.opacity = '1';
+            mobileMenu.style.transform = 'translateY(0)';
+            mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          }, 10);
+        } else {
+          // Animate out
+          mobileMenu.style.opacity = '0';
+          mobileMenu.style.transform = 'translateY(-10px)';
+          mobileMenu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          
+          // Hide after animation completes
+          setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+            // Reset inline styles
+            mobileMenu.style.opacity = '';
+            mobileMenu.style.transform = '';
+            mobileMenu.style.transition = '';
+          }, 300);
+        }
+        
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+      
+      // Toggle mobile dropdowns with animation
+      mobileDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const dropdown = toggle.closest('.mobile-dropdown');
+          const isOpening = !dropdown.classList.contains('active');
+          
+          // Close all other dropdowns
+          document.querySelectorAll('.mobile-dropdown').forEach(d => {
+            if (d !== dropdown && d.classList.contains('active')) {
+              d.classList.remove('active');
+            }
+          });
+          
+          // Toggle current dropdown
+          dropdown.classList.toggle('active');
+        });
+      });
+      
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mobile-dropdown') && !e.target.closest('#hamburger-btn')) {
+          document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+          });
+        }
+      });
+      
+      // Desktop dropdown hover functionality
+      const desktopDropdowns = document.querySelectorAll('.dropdown');
+      
+      desktopDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', () => {
+          dropdown.classList.add('active');
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+          dropdown.classList.remove('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

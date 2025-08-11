@@ -1,33 +1,38 @@
-# Task Manager API
+Task Manager API
+This is a simple Task Manager API built using Node.js and Express.js. It allows you to perform CRUD (Create, Read, Update, Delete) operations on tasks. The API is designed to be lightweight and easy to use. It also provides interactive documentation using Swagger and is designed for easy testing with Postman.
 
-This is a simple **Task Manager API** built using **Node.js** and **Express.js**. It allows you to perform **CRUD** (Create, Read, Update, Delete) operations on tasks. The API is designed to be lightweight and easy to use. It also provides interactive documentation using **Swagger** and is designed for easy testing with **Postman**.
-
-## Features
-
-### CRUD Operations
+Features
+CRUD Operations
 The API allows managing tasks with the following operations:
 
-- **GET /api/tasks**: Retrieve all tasks.
-- **GET /api/tasks/:id**: Retrieve a task by its unique ID.
-- **POST /api/tasks**: Create a new task.
-- **PUT /api/tasks/:id**: Update an existing task.
-- **DELETE /api/tasks/:id**: Delete a task.
+GET /api/tasks: Retrieve all tasks.
 
-### API Documentation
-The API is documented using **Swagger**. You can view and interact with the API through Swagger UI at the following endpoint:
+GET /api/tasks/:id: Retrieve a task by its unique ID.
 
-/api-docs
+POST /api/tasks: Create a new task.
 
+PUT /api/tasks/:id: Update an existing task.
 
-### In-memory storage
-Tasks are stored in **memory** (no database is used), meaning that the tasks will not persist after the server is restarted.
+DELETE /api/tasks/:id: Delete a task.
 
-## Tech Stack
+API Documentation
+The API is documented using Swagger. You can view and interact with the API through Swagger UI at the following endpoint:
 
-- **Node.js**: JavaScript runtime for building the API.
-- **Express.js**: Web framework for building RESTful APIs.
-- **Swagger UI**: For API documentation and interactive testing.
-- **Postman**: For manual testing and API exploration.
+Swagger UI: http://localhost:8000/api-docs
+
+This link will allow you to interactively test the API endpoints and see request and response formats.
+
+In-memory storage
+Tasks are stored in memory (no database is used), meaning that the tasks will not persist after the server is restarted.
+
+Tech Stack
+Node.js: JavaScript runtime for building the API.
+
+Express.js: Web framework for building RESTful APIs.
+
+Swagger UI: For API documentation and interactive testing.
+
+Postman: For manual testing and API exploration.
 
 API Endpoints
 The following are the available endpoints for the Task Manager API:
@@ -44,7 +49,7 @@ PUT /api/tasks/{id}: Updates a task by its ID.
 
 DELETE /api/tasks/{id}: Deletes a task by its ID.
 
-For more details on request bodies and response formats, check the Swagger UI documentation.
+For more details on request bodies and response formats, check the Swagger UI documentation at http://localhost:8000/api-docs.
 
 Error Handling
 The API responds with appropriate status codes to indicate success or failure:

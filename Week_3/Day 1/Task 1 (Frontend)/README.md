@@ -2,7 +2,7 @@ Azaiza Design Studio - Responsive Navbar
 This project features a responsive navbar designed with HTML, Tailwind CSS, and custom CSS and js. It offers a clean, modern design, smooth transitions, dropdown menus, and a mobile-friendly hamburger menu, making it suitable for both desktop and mobile views.
 
 Live Demo:
-
+https://sarmad-week3-day1.vercel.app/
 
 Features
 Fully Responsive: Automatically adjusts to different screen sizes, including desktop, tablet, and mobile.

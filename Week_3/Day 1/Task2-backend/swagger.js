@@ -5,10 +5,9 @@ const swaggerDocument = {
     description: 'A simple API to manage tasks.',
     version: '1.0.0',
   },
-  host: 'https://task2-backend-zeta.vercel.app/api-docs/',
-  
+  host: 'task2-backend-zeta.vercel.app',
   basePath: '/',
-  schemes: ['http'],
+  schemes: ['https', 'http'],  // Added https here
   paths: {
     '/api/tasks': {
       get: {
@@ -26,6 +25,7 @@ const swaggerDocument = {
             in: 'body',
             name: 'task',
             description: 'Task object',
+            required: true,
             schema: {
               type: 'object',
               required: ['title', 'completed'],
@@ -76,6 +76,7 @@ const swaggerDocument = {
             in: 'body',
             name: 'task',
             description: 'Updated task object',
+            required: true,
             schema: {
               type: 'object',
               properties: {

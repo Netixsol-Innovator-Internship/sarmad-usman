@@ -63,3 +63,5 @@ Smooth scaling and shadow on hover
 Hamburger menu for smaller screens
 
 Slide-in menu with theme toggle and links
+
+live demo: https://task-1-frontend-4bunsjwxk-sarmadusman01s-projects.vercel.app/

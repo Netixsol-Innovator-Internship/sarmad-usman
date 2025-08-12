@@ -5,7 +5,7 @@ const swaggerDocument = {
     description: 'A simple API to manage tasks.',
     version: '1.0.0',
   },
-  host: 'localhost:3000',
+  host: 'https://task2-backend-sarmadusman01-sarmadusman01s-projects.vercel.app/api-docs/',
   
   basePath: '/',
   schemes: ['http'],

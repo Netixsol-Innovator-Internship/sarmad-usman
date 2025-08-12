@@ -17,6 +17,6 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-parser": "^10.0.3",
     "swagger-ui-express": "^5.0.1",
-    "vercel": "^44.7.3"
+    "vercel": "^28.18.5"
   }
 }

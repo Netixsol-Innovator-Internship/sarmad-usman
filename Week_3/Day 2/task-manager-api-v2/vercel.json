@@ -1,0 +1,24 @@
+{
+  "builds": [
+    {
+      "src": "src/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/config/**",
+          "src/controllers/**",
+          "src/middleware/**",
+          "src/models/**",
+          "src/docs/**",
+          "node_modules/swagger-ui-dist/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/server.js"
+    }
+  ]
+}

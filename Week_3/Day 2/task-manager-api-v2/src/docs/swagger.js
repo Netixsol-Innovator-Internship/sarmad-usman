@@ -21,7 +21,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'https://task-manager-api-v2.vercel.app',
         description: 'Local development server',
       },
       {
